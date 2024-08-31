@@ -2,6 +2,42 @@ body {
   background-color: #f8f9fa;
 }
 
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* cssAI */
+.avatar {
+  width: 24px;
+  height: 24px;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid black; /* Giả lập con trỏ nhấp nháy */
+  animation: typewriter 3s steps(30) 1s forwards;
+}
+
+
 /* Tùy chỉnh cho Chrome và Safari */
 /* Thanh cuộn chính */
 ::-webkit-scrollbar {

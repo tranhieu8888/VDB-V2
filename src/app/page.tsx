@@ -1,8 +1,34 @@
+
+
 import CarouselClientComponent from './components/CarouselClientComponent'; // Đảm bảo đường dẫn đúng
+import ImageUploadComponent from './components/imageUploadLogic'; // Đảm bảo đường dẫn đúng
+
+import MessageInput from './components/MessageInput'; 
 
 
 
-const HomePage = () => {
+type Message = {
+  id: number;
+  sender: string;
+  content: string;
+  avatar: string;
+};
+
+async function fetchMessages(): Promise<Message[]> {
+  const res = await fetch('http://localhost:3000/api/messages', {
+    cache: 'no-store',
+  });
+  if (!res.ok) {
+    throw new Error('Failed to fetch messages');
+  }
+  return res.json();
+}
+
+
+const HomePage = async () => {
+
+   // Lấy tin nhắn từ API
+   const messages = await fetchMessages();
 
 
 
@@ -807,7 +833,7 @@ const HomePage = () => {
                       <div className="col">
                         <select id="itemsPerPage" className="form-select-items">
                           <option value={5}>5</option>
-                          <option value={10} selected=""> 10 </option>
+                          <option value={10}> 10 </option>
                           <option value={15}>15</option>
                           <option value={20}>20</option>
                         </select>
@@ -869,48 +895,18 @@ const HomePage = () => {
               <span className="title-grdonggop">Nội dung</span>
               <textarea id="textbox-contribute" placeholder="Nhập nội dung" defaultValue={""} />
             </div>
-            <div className="textbox-image d-flex flex-column" style={{ gap: 8 }}>
-              <span className="title-grdonggop">Hình ảnh</span>
-              <div className="d-flex" style={{ gap: 8 }}>
-                <div className="box" onclick="uploadImage(0)">
-                  <img src="icon/Add.svg" alt="Upload" className="icon" />
-                  <input type="file" className="file-input" onchange="previewImage(event, 0)" />
-                </div>
-                <div className="box" onclick="uploadImage(1)">
-                  <img src="icon/Add.svg" alt="Upload" className="icon" />
-                  <input type="file" className="file-input" onchange="previewImage(event, 1)" />
-                </div>
-                <div className="box" onclick="uploadImage(2)">
-                  <img src="icon/Add.svg" alt="Upload" className="icon" />
-                  <input type="file" className="file-input" onchange="previewImage(event, 2)" />
-                </div>
-                <div className="box" onclick="uploadImage(3)">
-                  <img src="icon/Add.svg" alt="Upload" className="icon" />
-                  <input type="file" className="file-input" onchange="previewImage(event, 3)" />
-                </div>
-                <div className="box" onclick="uploadImage(4)">
-                  <img src="icon/Add.svg" alt="Upload" className="icon" />
-                  <input type="file" className="file-input" onchange="previewImage(event, 4)" />
-                </div>
-              </div>
-            </div>
-            <div className="d-flex flex-column justify-content-center" style={{ gap: 8 }}>
-              <span className="title-grdonggop">Tệp</span>
-              <div className="body-upload-file d-flex align-items-center flex-column" id="upload-container">
-                <img src="icon/Paper Upload.svg" width={40} height={40} />
-                <input type="file" id="file-upload" />
-                <div className="d-flex flex-column align-items-center" style={{ gap: 8 }}>
-                  <span className="text-thatep"> Bấm hoặc kéo thả tệp vào đây để tải lên </span>
-                  <span className="text-dinhdang"> Hỗ trợ định dạng: PNG, JPG, PDF, DOC, XLSX, TXT... </span>
-                  <span className="text-dinhdang"> Dung lượng tối đa: 200MB </span>
-                </div>
-              </div>
-              <div id="file-name" className="file-name" />
-              <div id="error-message" className="error-message" />
-            </div>
+            <ImageUploadComponent />
+           
             <button className="btn-xacnhan-contribute">Xác nhận</button>
           </div>
-          <div className="chat-container">
+
+
+      <MessageInput />
+   
+
+          
+
+          {/* <div className="chat-container">
             <div className="d-flex justify-content-between" style={{ position: "relative" }}>
               <textarea placeholder="Nhập từ khóa hoặc nhấn '/' để bắt đầu tìm kiếm" id="text-box-midBody" className="d-flex" defaultValue={"/canvanex"} />
               <div className="d-flex" style={{ position: "absolute", bottom: 10, right: 10, gap: 10 }}>
@@ -919,7 +915,7 @@ const HomePage = () => {
                 </a>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
