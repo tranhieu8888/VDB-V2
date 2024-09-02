@@ -1,15 +1,14 @@
-// src/pages/api/messages.ts
+// src/app/api/messages/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 
 type Message = {
-  id: number;       // ID là kiểu number
-  sender: string;   // Người gửi tin nhắn
-  content: string;  // Nội dung tin nhắn văn bản
-  avatar: string;   // Đường dẫn ảnh đại diện
-  imageUrl?: string; // Đường dẫn tới hình ảnh (nếu có)
-  videoUrl?: string; // Đường dẫn tới video (nếu có)
+  id: number;
+  sender: string;
+  content: string;
+  avatar: string;
+  imageUrl?: string;
+  videoUrl?: string;
 };
-
 
 // Biến lưu trữ tin nhắn
 let messages: Message[] = [];
@@ -27,12 +26,12 @@ export async function POST(req: NextRequest) {
   const newMessageId = messageIdCounter++;
 
   const newMessage: Message = {
-    id: messageIdCounter++, // Sử dụng bộ đếm để tạo ID duy nhất
+    id: newMessageId, // Sử dụng bộ đếm để tạo ID duy nhất
     sender,
     content,
     avatar,
-    imageUrl, // Có thể là undefined nếu không có
-    videoUrl  // Có thể là undefined nếu không có
+    imageUrl,
+    videoUrl
   };
 
   messages.push(newMessage);
@@ -43,8 +42,7 @@ export async function POST(req: NextRequest) {
     sender: 'VDB AI',
     content: 'Đây là phản hồi từ bot.',
     avatar: 'icon/image 1.svg',
-    imageUrl: 'icon/image 1820.svg', // Đường dẫn đến hình ảnh
-    // videoUrl: 'icon/video.mp4', // Có thể sử dụng video thay vì hình ảnh
+    imageUrl: 'icon/image 1820.svg'
   };
 
   messages.push(botMessage);

@@ -1,6 +1,7 @@
 import CarouselClientComponent from './components/CarouselClientComponent'; // Đảm bảo đường dẫn đúng
 import ImageUploadComponent from './components/imageUploadLogic'; // Đảm bảo đường dẫn đúng
 import MessageInput from './components/MessageInput'; 
+import Image from "next/image";
 
 type Message = {
   id: number;
@@ -29,47 +30,47 @@ const HomePage = async () => {
         <div id="menu-left-body" className="d-flex flex-column">
           <div className="d-flex justify-content-between" id="title-body-leftMenu" style={{ width: "100%" }}>
             <span className="title-text">Lịch sử</span>
-            <img style={{ cursor: "pointer" }} src="icon/Edit Square.svg" width={20} height={20} />
+            <Image alt='image' style={{ cursor: "pointer" }} src="icon/Edit Square.svg" width={20} height={20} />
           </div>
           <div className="d-flex align-items-center" style={{ position: "relative" }}>
             <input id="search-bar-body-leftMenu" type="text" placeholder="Tìm kiếm..." />
-            <img src="icon/search.svg" width={24} height={24} style={{ position: "absolute", left: 12 }} />
+            <Image alt='image' src="icon/search.svg" width={24} height={24} style={{ position: "absolute", left: 12 }} />
           </div>
           <span className="title-today">Hôm nay</span>
           <div className="d-flex flex-column align-items-center" style={{ gap: 8 }}>
-            <img src="icon/speech-bubble 1.svg" width={100} height={100} />
+            <Image alt='image' src="icon/speech-bubble 1.svg" width={100} height={100} />
             <span className="title-today" style={{ textAlign: "center" }}> Chưa có cuộc trò chuyện nào. <br /> Hãy bắt đầu ngay nhé! </span>
           </div>
           <div id="btn-chevon" className="d-flex justify-content-center align-items-center" style={{ cursor: "pointer" }}>
-            <img src="icon/chevron-left.svg" width={12} height={12} />
+            <Image alt='image' src="icon/chevron-left.svg" width={12} height={12} />
           </div>
         </div>
         <div id="mid-menu-body" className="mid-menu-body d-flex justify-content-between flex-column mx-auto" style={{ width: 716 }}>
           <div id="btn-chevon-right" className="d-flex justify-content-center align-items-center">
-            <img src="icon/chevron-right.svg" width={12} height={12} />
+            <Image alt='image' src="icon/chevron-right.svg" width={12} height={12} />
           </div>
           <div className="d-flex flex-column" id="mid-top-body">
             <div className="d-flex" id="title-mid-top-body" style={{ gap: 8 }}>
               <div className="d-flex" style={{ gap: 4 }}>
                 <span className="title-hello">Chào Hoàng,</span>
-                <img src="icon/image 1805.svg" width={32} height={32} />
+                <Image alt='image' src="icon/image 1805.svg" width={32} height={32} />
               </div>
             </div>
             <div className="menu-future d-flex">
               <div className="menu-itemfuture d-flex align-items-center">
-                <img className="item-image" src="icon/magic 1.svg" width={32} height={32} />
+                <Image alt='image' className="item-image" src="icon/magic 1.svg" width={32} height={32} />
                 <span className="text-future">Tìm kiếm với AI</span>
               </div>
               <div className="menu-itemfuture d-flex align-items-center">
-                <img className="item-image" src="icon/inbox 1.svg" width={32} height={32} />
+                <Image alt='image' className="item-image" src="icon/inbox 1.svg" width={32} height={32} />
                 <span className="text-future">Tải tệp lên</span>
               </div>
               <div className="menu-itemfuture d-flex align-items-center">
-                <img className="item-image" src="icon/feather-pen 1.svg" width={32} height={32} />
+                <Image alt='image' className="item-image" src="icon/feather-pen 1.svg" width={32} height={32} />
                 <span className="text-future">Viết nội dung</span>
               </div>
               <div className="menu-itemfuture d-flex align-items-center">
-                <img className="item-image" src="icon/mandala 1.svg" width={32} height={32} />
+                <Image alt='image' className="item-image" src="icon/mandala 1.svg" width={32} height={32} />
                 <span className="text-future">Sáng tạo nghệ thuật</span>
               </div>
             </div>
@@ -81,21 +82,21 @@ const HomePage = async () => {
                 <div className="scroll-container d-flex flex-column" style={{ gap: 8 }}>
                   <div className="owl-carousel owl-theme image-users d-flex">
                     <div>
-                      <img className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
+                      <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
                     </div>
-                    <img className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
-                    <img className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
-                    <img className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
-                    <img className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
-                    <img className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
-                    <img className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
-                    <img className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
-                    <img className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
-                    <img className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
-                    <img className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
-                    <img className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
-                    <img className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
-                    <img className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
+                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
+                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
+                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
+                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
+                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
+                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
+                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
+                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
+                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
+                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
+                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
+                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
+                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" />
                   </div>
                   <div className="d-flex align-items-center" style={{ gap: 8, height: 38 }}>
                     <span className="title-topic">Gợi ý chủ đề:</span>
@@ -103,7 +104,7 @@ const HomePage = async () => {
                       <div className="full-suggest d-flex">
                         <div className="items-suggest d-flex" style={{ gap: 8 }}>
                           <div className="child-items-suggest d-flex align-items-center">
-                            <img src="icon/luggage 1.svg" width={20} height={20} />
+                            <Image alt='image' src="icon/luggage 1.svg" width={20} height={20} />
                             <span className="text-topic">Du lịch</span>
                           </div>
                         </div>
@@ -111,7 +112,7 @@ const HomePage = async () => {
                       <div className="full-suggest d-flex">
                         <div className="items-suggest d-flex" style={{ gap: 8 }}>
                           <div className="child-items-suggest d-flex align-items-center">
-                            <img src="icon/luggage 1.svg" width={20} height={20} />
+                            <Image alt='image' src="icon/luggage 1.svg" width={20} height={20} />
                             <span className="text-topic">Ẩm thực</span>
                           </div>
                         </div>
@@ -119,7 +120,7 @@ const HomePage = async () => {
                       <div className="full-suggest d-flex">
                         <div className="items-suggest d-flex" style={{ gap: 8 }}>
                           <div className="child-items-suggest d-flex align-items-center">
-                            <img src="icon/luggage 1.svg" width={20} height={20} />
+                            <Image alt='image' src="icon/luggage 1.svg" width={20} height={20} />
                             <span className="text-topic">Công nghệ</span>
                           </div>
                         </div>
@@ -127,7 +128,7 @@ const HomePage = async () => {
                       <div className="full-suggest d-flex">
                         <div className="items-suggest d-flex" style={{ gap: 8 }}>
                           <div className="child-items-suggest d-flex align-items-center">
-                            <img src="icon/luggage 1.svg" width={20} height={20} />
+                            <Image alt='image' src="icon/luggage 1.svg" width={20} height={20} />
                             <span className="text-topic">Thời trang</span>
                           </div>
                         </div>
@@ -135,7 +136,7 @@ const HomePage = async () => {
                       <div className="full-suggest d-flex">
                         <div className="items-suggest d-flex" style={{ gap: 8 }}>
                           <div className="child-items-suggest d-flex align-items-center">
-                            <img src="icon/luggage 1.svg" width={20} height={20} />
+                            <Image alt='image' src="icon/luggage 1.svg" width={20} height={20} />
                             <span className="text-topic">Thể thao</span>
                           </div>
                         </div>
@@ -156,7 +157,7 @@ const HomePage = async () => {
               <div className="contain-groupbtn-bdmid d-flex flex-column" style={{ gap: 16 }}>
                 <div id="groupButton-body-mid" className="groupButton-body-mid d-flex">
                   <div id="button-gr-body-mid-setting" className="button-gr-body-mid d-flex align-items-center">
-                    <img src="icon/Setting.svg" width={20} height={20} />
+                    <Image alt='image' src="icon/Setting.svg" width={20} height={20} />
                     <span className="text-group">Cài đặt</span>
                     <div className="menu-setting d-flex flex-column">
                       <div className="menu-dropdown d-flex flex-column" style={{ gap: 8 }}>
@@ -164,7 +165,7 @@ const HomePage = async () => {
                         <div className="dropdown">
                           <button className="btn-dropdown d-flex align-items-center justify-content-between" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span className="text-group">Tiếng Việt</span>
-                            <img id="close-contribute" src="icon/Chevron Down.svg" width={20} height={20} />
+                            <Image alt='image' id="close-contribute" src="icon/Chevron Down.svg" width={20} height={20} />
                           </button>
                           <ul className="dropdown-menu">
                             <li>
@@ -174,21 +175,21 @@ const HomePage = async () => {
                         </div>
                       </div>
                       <div className="btn-setting d-flex btn-share align-items-center" style={{ cursor: "pointer" }}>
-                        <img src="icon/fluent_share-28-filled.svg" width={20} height={20} />
+                        <Image alt='image' src="icon/fluent_share-28-filled.svg" width={20} height={20} />
                         <span className="text-group">Chia sẻ cuộc trò chuyện</span>
                       </div>
                       <div className="btn-setting d-flex btn-magic align-items-center" style={{ cursor: "pointer" }}>
-                        <img src="icon/fa-solid_magic.svg" width={20} height={20} />
+                        <Image alt='image' src="icon/fa-solid_magic.svg" width={20} height={20} />
                         <span className="text-group">Cá nhân hoá trợ lý AI</span>
                       </div>
                     </div>
                   </div>
                   <div id="button-gr-body-mid-mngcontribute" className="button-gr-body-mid d-flex align-items-center">
-                    <img src="icon/Paper.svg" width={20} height={20} />
+                    <Image alt='image' src="icon/Paper.svg" width={20} height={20} />
                     <span className="text-group">Quản lý đóng góp</span>
                   </div>
                   <div id="button-gr-body-mid-contribute" className="button-gr-body-mid d-flex align-items-center">
-                    <img src="icon/Paper Plus.svg" width={20} height={20} />
+                    <Image alt='image' src="icon/Paper Plus.svg" width={20} height={20} />
                     <span className="text-group">Đóng góp</span>
                     <div className="btn-beta d-flex">
                       <span className="text-beta">beta</span>
@@ -198,18 +199,18 @@ const HomePage = async () => {
                 <div className="manager-contribute d-flex flex-column" style={{ zIndex: 99999 }}>
                   <div className="navbar-donggop d-flex">
                     <div className="d-flex justify-content-between" style={{ width: "100%" }}>
-                      <img src="icon/Back Icon.svg" width={24} height={24} />
+                      <Image alt='image' src="icon/Back Icon.svg" width={24} height={24} />
                       <div className="d-flex" style={{ gap: 10 }}>
                         <span className="text-danhsachdonggop"> Danh sách đóng góp </span>
                       </div>
-                      <img id="close-manager-contribute" style={{ cursor: "pointer" }} src="icon/Close Icon Container.svg" width={24} height={24} />
+                      <Image alt='image' id="close-manager-contribute" style={{ cursor: "pointer" }} src="icon/Close Icon Container.svg" width={24} height={24} />
                     </div>
                   </div>
                   <div className="rectangle" style={{ border: "1px solid #cad0d7" }} />
                   <div className="navbar-contribute d-flex align-items-center justify-content-between" style={{ gap: 8 }}>
                     <span className="text-countcontribute"> Tổng số đóng góp: <span style={{ fontWeight: 600 }}>124</span>{" "} nội dung | <span style={{ fontWeight: 600 }}>84</span> hình ảnh | <span style={{ fontWeight: 600 }}>16</span> tệp </span>
                     <div className="btn-manager-contribute d-flex align-items-center" style={{ cursor: "pointer" }}>
-                      <img src="icon/Paper Plus.svg" width={20} height={20} />
+                      <Image alt='image' src="icon/Paper Plus.svg" width={20} height={20} />
                       <span className="text-donggop">Đóng góp</span>
                       <div className="btn-beta d-flex">
                         <span className="text-beta">beta</span>
@@ -245,34 +246,34 @@ const HomePage = async () => {
                         <tr style={{ height: 80 }}>
                           <td className="text-days">21/05/2024</td>
                           <td>
-                            <img src="icon/Ellipse 2655.svg" width={40} height={40} />
+                            <Image alt='image' src="icon/Ellipse 2655.svg" width={40} height={40} />
                             <span className="text-fullname">Nguyễn Đức Quân</span>
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 8, position: "relative" }}>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                             </div>
                           </td>
@@ -283,15 +284,15 @@ const HomePage = async () => {
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 16 }}>
-                              <img style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
-                              <img style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
                             </div>
                           </td>
                         </tr>
                         <tr style={{ height: 80 }}>
                           <td className="text-days">21/05/2024</td>
                           <td>
-                            <img src="icon/Ellipse 2655.svg" width={40} height={40} />
+                            <Image alt='image' src="icon/Ellipse 2655.svg" width={40} height={40} />
                             <span className="text-fullname">Nguyễn Đức Quân</span>
                           </td>
                           <td className="box-text">
@@ -304,21 +305,21 @@ const HomePage = async () => {
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 16 }}>
-                              <img style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
-                              <img style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
                             </div>
                           </td>
                         </tr>
                         <tr style={{ height: 80 }}>
                           <td className="text-days">21/05/2024</td>
                           <td>
-                            <img src="icon/Ellipse 2655.svg" width={40} height={40} />
+                            <Image alt='image' src="icon/Ellipse 2655.svg" width={40} height={40} />
                             <span className="text-fullname">Nguyễn Đức Quân</span>
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 16, position: "relative" }}>
                               <div className="d-flex flex-column align-items-center" style={{ gap: 8 }}>
-                                <img src="icon/pdf 1.svg" width={40} height={40} />
+                                <Image alt='image' src="icon/pdf 1.svg" width={40} height={40} />
                                 <span style={{
                                     fontWeight: 400,
                                     fontSize: 12,
@@ -326,7 +327,7 @@ const HomePage = async () => {
                                   }}> Chứng nhận ĐKKD.pdf </span>
                               </div>
                               <div className="d-flex flex-column align-items-center" style={{ gap: 8 }}>
-                                <img src="icon/pdf 1.svg" width={40} height={40} />
+                                <Image alt='image' src="icon/pdf 1.svg" width={40} height={40} />
                                 <span style={{
                                     fontWeight: 400,
                                     fontSize: 12,
@@ -334,7 +335,7 @@ const HomePage = async () => {
                                   }}> Chứng nhận ĐKKD.pdf </span>
                               </div>
                               <div className="d-flex flex-column align-items-center" style={{ gap: 8 }}>
-                                <img src="icon/pdf 1.svg" width={40} height={40} />
+                                <Image alt='image' src="icon/pdf 1.svg" width={40} height={40} />
                                 <span style={{
                                     fontWeight: 400,
                                     fontSize: 12,
@@ -350,41 +351,41 @@ const HomePage = async () => {
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 16 }}>
-                              <img style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
-                              <img style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
                             </div>
                           </td>
                         </tr> {/* ok */} <tr style={{ height: 80 }}>
                           <td className="text-days">21/05/2024</td>
                           <td>
-                            <img src="icon/Ellipse 2655.svg" width={40} height={40} />
+                            <Image alt='image' src="icon/Ellipse 2655.svg" width={40} height={40} />
                             <span className="text-fullname">Nguyễn Đức Quân</span>
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 8, position: "relative" }}>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                             </div>
                           </td>
@@ -395,42 +396,42 @@ const HomePage = async () => {
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 16 }}>
-                              <img style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
-                              <img style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
                             </div>
                           </td>
                         </tr>
                         <tr style={{ height: 80 }}>
                           <td className="text-days">21/05/2024</td>
                           <td>
-                            <img src="icon/Ellipse 2655.svg" width={40} height={40} />
+                            <Image alt='image' src="icon/Ellipse 2655.svg" width={40} height={40} />
                             <span className="text-fullname">Nguyễn Đức Quân</span>
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 8, position: "relative" }}>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                             </div>
                           </td>
@@ -441,42 +442,42 @@ const HomePage = async () => {
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 16 }}>
-                              <img style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
-                              <img style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
                             </div>
                           </td>
                         </tr>
                         <tr style={{ height: 80 }}>
                           <td className="text-days">21/05/2024</td>
                           <td>
-                            <img src="icon/Ellipse 2655.svg" width={40} height={40} />
+                            <Image alt='image' src="icon/Ellipse 2655.svg" width={40} height={40} />
                             <span className="text-fullname">Nguyễn Đức Quân</span>
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 8, position: "relative" }}>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                             </div>
                           </td>
@@ -487,42 +488,42 @@ const HomePage = async () => {
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 16 }}>
-                              <img style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
-                              <img style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
                             </div>
                           </td>
                         </tr>
                         <tr style={{ height: 80 }}>
                           <td className="text-days">21/05/2024</td>
                           <td>
-                            <img src="icon/Ellipse 2655.svg" width={40} height={40} />
+                            <Image alt='image' src="icon/Ellipse 2655.svg" width={40} height={40} />
                             <span className="text-fullname">Nguyễn Đức Quân</span>
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 8, position: "relative" }}>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                             </div>
                           </td>
@@ -533,42 +534,42 @@ const HomePage = async () => {
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 16 }}>
-                              <img style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
-                              <img style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
                             </div>
                           </td>
                         </tr>
                         <tr style={{ height: 80 }}>
                           <td className="text-days">21/05/2024</td>
                           <td>
-                            <img src="icon/Ellipse 2655.svg" width={40} height={40} />
+                            <Image alt='image' src="icon/Ellipse 2655.svg" width={40} height={40} />
                             <span className="text-fullname">Nguyễn Đức Quân</span>
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 8, position: "relative" }}>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                             </div>
                           </td>
@@ -579,42 +580,42 @@ const HomePage = async () => {
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 16 }}>
-                              <img style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
-                              <img style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
                             </div>
                           </td>
                         </tr>
                         <tr style={{ height: 80 }}>
                           <td className="text-days">21/05/2024</td>
                           <td>
-                            <img src="icon/Ellipse 2655.svg" width={40} height={40} />
+                            <Image alt='image' src="icon/Ellipse 2655.svg" width={40} height={40} />
                             <span className="text-fullname">Nguyễn Đức Quân</span>
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 8, position: "relative" }}>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                             </div>
                           </td>
@@ -625,42 +626,42 @@ const HomePage = async () => {
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 16 }}>
-                              <img style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
-                              <img style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
                             </div>
                           </td>
                         </tr>
                         <tr style={{ height: 80 }}>
                           <td className="text-days">21/05/2024</td>
                           <td>
-                            <img src="icon/Ellipse 2655.svg" width={40} height={40} />
+                            <Image alt='image' src="icon/Ellipse 2655.svg" width={40} height={40} />
                             <span className="text-fullname">Nguyễn Đức Quân</span>
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 8, position: "relative" }}>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                             </div>
                           </td>
@@ -671,42 +672,42 @@ const HomePage = async () => {
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 16 }}>
-                              <img style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
-                              <img style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
                             </div>
                           </td>
                         </tr>
                         <tr style={{ height: 80 }}>
                           <td className="text-days">21/05/2024</td>
                           <td>
-                            <img src="icon/Ellipse 2655.svg" width={40} height={40} />
+                            <Image alt='image' src="icon/Ellipse 2655.svg" width={40} height={40} />
                             <span className="text-fullname">Nguyễn Đức Quân</span>
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 8, position: "relative" }}>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                             </div>
                           </td>
@@ -717,42 +718,42 @@ const HomePage = async () => {
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 16 }}>
-                              <img style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
-                              <img style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
                             </div>
                           </td>
                         </tr>
                         <tr style={{ height: 80 }}>
                           <td className="text-days">21/05/2024</td>
                           <td>
-                            <img src="icon/Ellipse 2655.svg" width={40} height={40} />
+                            <Image alt='image' src="icon/Ellipse 2655.svg" width={40} height={40} />
                             <span className="text-fullname">Nguyễn Đức Quân</span>
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 8, position: "relative" }}>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                             </div>
                           </td>
@@ -763,42 +764,42 @@ const HomePage = async () => {
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 16 }}>
-                              <img style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
-                              <img style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
                             </div>
                           </td>
                         </tr>
                         <tr style={{ height: 80 }}>
                           <td className="text-days">21/05/2024</td>
                           <td>
-                            <img src="icon/Ellipse 2655.svg" width={40} height={40} />
+                            <Image alt='image' src="icon/Ellipse 2655.svg" width={40} height={40} />
                             <span className="text-fullname">Nguyễn Đức Quân</span>
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 8, position: "relative" }}>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                               <div className="d-flex">
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                                 <div className="image-migmore">
-                                  <img style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
+                                  <Image alt='image' style={{ position: "absolute" }} src="icon/mingcute_more-1-fill.svg" width={16} height={16} />
                                 </div>
                               </div>
                               <div>
-                                <img src="icon/Rectangle 849.svg" width={64} height={64} />
+                                <Image alt='image' src="icon/Rectangle 849.svg" width={64} height={64} />
                               </div>
                             </div>
                           </td>
@@ -809,8 +810,8 @@ const HomePage = async () => {
                           </td>
                           <td>
                             <div className="d-flex" style={{ gap: 16 }}>
-                              <img style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
-                              <img style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/ci_note-edit.svg" width={20} height={20} />
+                              <Image alt='image' style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
                             </div>
                           </td>
                         </tr>
@@ -833,7 +834,7 @@ const HomePage = async () => {
                               <ul id="pagination" className="pagination justify-content-center align-items-center">
                                 <li className="page-item">
                                   <button className="btn-pagination d-flex align-items-center justify-content-center" id="prev">
-                                    <img style={{ cursor: "pointer" }} src="icon/Chevron Left.svg" width={20} height={20} />
+                                    <Image alt='image' style={{ cursor: "pointer" }} src="icon/Chevron Left.svg" width={20} height={20} />
                                   </button>
                                 </li>
                                 <li className="page-item">
@@ -841,7 +842,7 @@ const HomePage = async () => {
                                 </li>
                                 <li className="page-item">
                                   <button className="btn-pagination d-flex align-items-center justify-content-center" id="next">
-                                    <img style={{
+                                    <Image alt='image' style={{
                                         cursor: "pointer",
                                         transform: "rotate(180deg)"
                                       }} src="icon/Chevron Left.svg" width={20} height={20} />
@@ -878,7 +879,7 @@ const HomePage = async () => {
                       <div className="d-flex justify-content-center" style={{ gap: 10, padding: "0 0 0 24px", width: "100%" }}>
                         <span className="text-btndonggop">Đóng góp</span>
                       </div>
-                      <img id="close-contributes" src="icon/Group 81344.svg" width={24} height={24} style={{ cursor: "pointer" }} />
+                      <Image alt='image' id="close-contributes" src="icon/Group 81344.svg" width={24} height={24} style={{ cursor: "pointer" }} />
                     </div>
                   </div>
                   <div className="rectangle" style={{ border: "1px solid #ecf0f1" }} />
