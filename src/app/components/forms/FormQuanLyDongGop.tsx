@@ -18,6 +18,21 @@ import ReactDOM from 'react-dom';
       if (container) {
         setButtonContainer(container);
       }
+
+      const btnQuanlydonggop = document.getElementById("button-gr-body-mid-mngcontribute");
+const overlay = document.getElementById("overlay") as HTMLElement;
+const managerContribute = document.querySelector(".manager-contribute") as HTMLElement;
+
+if (btnQuanlydonggop && managerContribute && overlay) {
+  btnQuanlydonggop.addEventListener("click", function () {
+    managerContribute.style.setProperty("display", "flex", "important");
+    overlay.style.display = "block";
+    document.body.classList.add("no-scroll");
+  });
+}
+
+
+
     }, []);
 
     const buttonDiv = (
@@ -27,6 +42,8 @@ import ReactDOM from 'react-dom';
                   </div>
 
     );
+
+
   
     return (
       <div>
@@ -195,8 +212,9 @@ import ReactDOM from 'react-dom';
                        <Image alt='image' style={{ cursor: "pointer" }} src="icon/lucide_trash.svg" width={20} height={20} />
                      </div>
                    </td>
-                 </tr>  <tr style={{ height: 80 }}>
-                   <td className="text-days">21/05/2024</td>
+                 </tr>  
+                  <tr style={{ height: 80 }}>
+                    <td className="text-days">21/05/2024</td>
                    <td>
                      <Image alt='image' src="icon/Ellipse 2655.svg" width={40} height={40} />
                      <span className="text-fullname">Nguyễn Đức Quân</span>

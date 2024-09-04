@@ -385,7 +385,6 @@ if(btnDonggop && formContribute && overlay && closeContribute) {
 
     const btnChevon = document.getElementById("btn-chevon") as HTMLButtonElement | null;
 const menuLeftBody = document.getElementById("menu-left-body") as HTMLElement | null;
-const mid_menu_body_topic = document.getElementById("mid-menu-body-topic") as HTMLElement | null;
 const mid_menu_body = document.querySelector(".mid-menu-body") as HTMLElement | null;
 const btn_chevon_right = document.getElementById("btn-chevon-right") as HTMLButtonElement | null;
 

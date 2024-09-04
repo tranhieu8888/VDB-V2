@@ -139,7 +139,7 @@ body {
 
   #mid-menu-body {
     width: 100% !important;
-    height: 100% !important;
+    /* height: 100% !important; */
   }
 
   #groupButton-body-mid {
