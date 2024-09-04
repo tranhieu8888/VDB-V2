@@ -215,6 +215,7 @@ body {
     height: 900px !important;
     width: 700px !important;
   }
+
 }
 
 /* # PC Low
@@ -613,6 +614,7 @@ body {
   box-shadow: 0px 1px 3px 0px #0000001a;
   width: 716px;
   aspect-ratio: 1 / 1.5;
+  height: 100% !important;
 
 }
 
