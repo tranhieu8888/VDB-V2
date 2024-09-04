@@ -479,6 +479,7 @@ body {
   width: 1024px;
   top: 72px;
   gap: 8px;
+  height: auto !important;
 }
 
 #main-body-multiResults {
@@ -614,7 +615,7 @@ body {
   box-shadow: 0px 1px 3px 0px #0000001a;
   width: 716px;
   aspect-ratio: 1 / 1.5;
-  height: 100% !important;
+  height: auto !important;
 
 }
 
