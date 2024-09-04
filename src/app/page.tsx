@@ -1,5 +1,5 @@
-import CarouselClientComponent from './components/CarouselClientComponent'; // Đảm bảo đường dẫn đúng
-import ImageUploadComponent from './components/imageUploadLogic'; // Đảm bảo đường dẫn đúng
+import CarouselClientComponent from './components/CarouselClientComponent';
+import ImageUploadComponent from './components/imageUploadLogic';
 import MessageInput from './components/MessageInput'; 
 import Image from "next/image";
 import React from 'react';
@@ -57,8 +57,11 @@ const HomePage = async () => {
               </div>
             </div>
           </div>
+
+
+
           <div id="messages" className="d-flex flex-column"/>
-          <div style={{ marginTop: 10 }}>
+          <div className='group-menu-future'>
             <div className="d-flex flex-column">
               <div className="d-flex">
                 <div className="scroll-container d-flex flex-column">

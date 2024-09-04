@@ -16,7 +16,6 @@ export default function Rootlayout({ children }: { children: ReactNode }) {
         <link rel="stylesheet" href="/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/css/globals.css" />
       </head>
-
       <body>
 
       <div className="overlay" id="overlay"></div>
@@ -48,7 +47,6 @@ export default function Rootlayout({ children }: { children: ReactNode }) {
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" strategy="beforeInteractive"  />
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" strategy="beforeInteractive" />
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" strategy="beforeInteractive" />
-
       </body>
     </html>
   );

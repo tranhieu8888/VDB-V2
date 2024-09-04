@@ -1282,6 +1282,12 @@ a:hover #textSub-menuleft {
   flex-wrap: wrap;
 }
 
+.group-menu-future {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
 .text-future {
   font-weight: 500;
   font-size: 14px;
