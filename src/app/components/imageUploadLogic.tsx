@@ -1,5 +1,6 @@
-'use client'; // Thêm dòng này để đánh dấu đây là client component
+'use client';
 import React, { useState } from 'react';
+import Image from 'next/image';
 const CombinedUploadComponent: React.FC = () => {
   // State để lưu trữ URL của các ảnh preview
   const [imagePreviews, setImagePreviews] = useState<string[]>(Array(5).fill(''));
@@ -55,9 +56,9 @@ const CombinedUploadComponent: React.FC = () => {
           {[0, 1, 2, 3, 4].map((index) => (
             <div key={index} className="box" onClick={() => triggerFileInput(index)}>
               {imagePreviews[index] ? (
-                <img src={imagePreviews[index]} alt={`Preview ${index}`} className="uploaded-img" />
+                <Image src={imagePreviews[index]} alt={`Preview ${index}`} className="uploaded-img" width={100} height={100}/>
               ) : (
-                <img src="/icon/Add.svg" alt="Upload" className="icon" />
+                <Image src="/icon/Add.svg" alt="Upload" className="icon" width={20} height={20.15} style={{ width: 'auto', height: '20.15px' }}/>
               )}
               <input
                 type="file"
@@ -73,7 +74,7 @@ const CombinedUploadComponent: React.FC = () => {
       <div className="d-flex flex-column justify-content-center" style={{ gap: 8, marginTop: '20px' }}>
         <span className="title-grdonggop">Tệp</span>
         <div className="body-upload-file d-flex align-items-center flex-column" id="upload-container" onClick={triggerFileUpload}>
-          <img src="icon/Paper Upload.svg" width={40} height={40} />
+          <Image alt='image' src="icon/Paper Upload.svg" width={40} height={40} />
           <input type="file" id="file-upload" onChange={handleFileUpload} style={{ display: 'none' }} />
           <div className="d-flex flex-column align-items-center" style={{ gap: 8 }}>
             <span className="text-thatep"> Bấm hoặc kéo thả tệp vào đây để tải lên </span>
