@@ -22,7 +22,10 @@ const HomePage = async () => {
           <span className="title-today">Hôm nay</span>
           <div className="d-flex flex-column align-items-center" style={{ gap: 8 }}>
             <Image alt='image' src="icon/speech-bubble 1.svg" width={100} height={100} priority />
-            <span className="title-today" style={{ textAlign: "center" }}> Chưa có cuộc trò chuyện nào. <br /> Hãy bắt đầu ngay nhé! </span>
+            <span className="title-today" style={{ textAlign: "center" }}>
+              Chưa có cuộc trò chuyện nào. 
+              <br/> 
+              Hãy bắt đầu ngay nhé! </span>
           </div>
           <div id="btn-chevon" className="d-flex justify-content-center align-items-center">
             <Image alt='image' src="icon/chevron-left.svg" width={12} height={12} priority/>

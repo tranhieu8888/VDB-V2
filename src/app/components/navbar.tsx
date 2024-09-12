@@ -18,10 +18,10 @@ const Navbar = () => {
     </div>
     <div className="d-flex" id="header-navbar">
       <div className="d-flex" style={{gap: '24px'}}>
-        <Image alt='image' src="icon/logoVd.svg" width={48.78} height={40} />
+        <Image alt='image' src="icon/logoVd.svg" width={48.78} height={40} layout='responsive'/>
         <div className="d-flex align-items-center" id="search-navbar">
           <div className="s-icon" style={{position: 'absolute', paddingLeft: '12px'}}>
-            <Image alt='image' src="icon/search.svg" width={24} height={24} />
+            <Image alt='image' src="icon/search.svg" width={24} height={24}/>
           </div>
           <input type="text" id="search-bar" className="d-flex" placeholder="Tìm kiếm VdiaryBook..." />
         </div>
