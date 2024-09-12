@@ -38,23 +38,23 @@ const HomePage = async () => {
                 <Image alt='image' src="icon/image 1805.svg" width={32} height={32} priority/>
               </div>
             </div>
-            <div className="menu-future d-flex">
-              <div className="menu-itemfuture d-flex align-items-center">
-                <Image alt='image' className="item-image" src="icon/magic 1.svg" width={32} height={32} priority/>
-                <span className="text-future">Tìm kiếm với AI</span>
-              </div>
-              <div className="menu-itemfuture d-flex align-items-center">
-                <Image alt='image' className="item-image" src="icon/inbox 1.svg" width={32} height={32} priority/>
-                <span className="text-future">Tải tệp lên</span>
-              </div>
-              <div className="menu-itemfuture d-flex align-items-center">
-                <Image alt='image' className="item-image" src="icon/feather-pen 1.svg" width={32} height={32} priority/>
-                <span className="text-future">Viết nội dung</span>
-              </div>
-              <div className="menu-itemfuture d-flex align-items-center">
-                <Image alt='image' className="item-image" src="icon/mandala 1.svg" width={32} height={32} priority/>
-                <span className="text-future">Sáng tạo nghệ thuật</span>
-              </div>
+              <div className="menu-future d-flex">
+                <div className="menu-itemfuture d-flex align-items-center">
+                  <Image alt='image' className="item-image" src="icon/magic 1.svg" width={32} height={32} priority/>
+                  <span className="text-future">Tìm kiếm với AI</span>
+                </div>
+                <div className="menu-itemfuture d-flex align-items-center">
+                  <Image alt='image' className="item-image" src="icon/inbox 1.svg" width={32} height={32} priority/>
+                  <span className="text-future">Tải tệp lên</span>
+                </div>
+                <div className="menu-itemfuture d-flex align-items-center">
+                  <Image alt='image' className="item-image" src="icon/feather-pen 1.svg" width={32} height={32} priority/>
+                  <span className="text-future">Viết nội dung</span>
+                </div>
+                <div className="menu-itemfuture d-flex align-items-center">
+                  <Image alt='image' className="item-image" src="icon/mandala 1.svg" width={32} height={32} priority/>
+                  <span className="text-future">Sáng tạo nghệ thuật</span>
+                </div>
             </div>
           </div>
 
@@ -181,7 +181,34 @@ const HomePage = async () => {
                     </div>
                   </div>
                 </div>
-                <div className="manager-contribute d-flex flex-column" style={{ zIndex: 99999 }}>
+               
+                
+                <MessageInput />
+              </div>
+            </div>
+          </div>
+
+          <div className="contribute d-flex justify-content-center flex-column" style={{ zIndex: 99999 }}>
+                  <div className="d-flex align-items-center" style={{ gap: 16, width: "100%" }}>
+                    <div className="d-flex justify-content-between align-items-center" style={{ width: "100%" }}>
+                      <div className="d-flex justify-content-center" style={{ gap: 10, padding: "0 0 0 24px", width: "100%" }}>
+                        <span className="text-btndonggop">Đóng góp</span>
+                      </div>
+                      <Image alt='image' id="close-contributes" src="icon/Group 81344.svg" width={24} height={24}/>
+                    </div>
+                  </div>
+                  <div className="rectangle" style={{ border: "1px solid #ecf0f1" }} />
+                  <div className="textbox-content d-flex flex-column" style={{ gap: 8 }}>
+                    <span className="title-grdonggop">Nội dung</span>
+                    <textarea id="textbox-contribute" placeholder="Nhập nội dung" defaultValue={""} />
+                  </div>
+                  <ImageUploadComponent />
+                  <button className="btn-xacnhan-contribute">Xác nhận</button>
+                </div>
+
+
+
+                 <div className="manager-contribute d-flex flex-column" style={{ zIndex: 99999 }}>
                   <div className="navbar-donggop d-flex">
                     <div className="d-flex justify-content-between" style={{ width: "100%" }}>
                       <Image alt='image' src="icon/Back Icon.svg" width={24} height={24} />
@@ -858,27 +885,6 @@ const HomePage = async () => {
                     </div>
                   </div>
                 </div>
-                <div className="contribute d-flex justify-content-center flex-column" style={{ zIndex: 99999 }}>
-                  <div className="d-flex align-items-center" style={{ gap: 16, width: "100%" }}>
-                    <div className="d-flex justify-content-between align-items-center" style={{ width: "100%" }}>
-                      <div className="d-flex justify-content-center" style={{ gap: 10, padding: "0 0 0 24px", width: "100%" }}>
-                        <span className="text-btndonggop">Đóng góp</span>
-                      </div>
-                      <Image alt='image' id="close-contributes" src="icon/Group 81344.svg" width={24} height={24}/>
-                    </div>
-                  </div>
-                  <div className="rectangle" style={{ border: "1px solid #ecf0f1" }} />
-                  <div className="textbox-content d-flex flex-column" style={{ gap: 8 }}>
-                    <span className="title-grdonggop">Nội dung</span>
-                    <textarea id="textbox-contribute" placeholder="Nhập nội dung" defaultValue={""} />
-                  </div>
-                  <ImageUploadComponent />
-                  <button className="btn-xacnhan-contribute">Xác nhận</button>
-                </div>
-                <MessageInput />
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       <CarouselClientComponent /> 
