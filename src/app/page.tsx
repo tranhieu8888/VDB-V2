@@ -3,10 +3,10 @@ import ImageUploadComponent from './components/imageUploadLogic';
 import MessageInput from './components/MessageInput'; 
 import Image from "next/image";
 import React from 'react';
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const HomePage = async () => {
-  
+  <SpeedInsights/>
   return (
     <>
       <div className="d-flex" id="main-body">
