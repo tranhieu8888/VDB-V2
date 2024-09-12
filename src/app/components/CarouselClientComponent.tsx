@@ -1,6 +1,6 @@
 // src/components/CarouselClientComponent.tsx
 "use client"; // Đánh dấu đây là Client Component
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 const CarouselClientComponent = () => {
 
@@ -102,13 +102,23 @@ const CarouselClientComponent = () => {
       const menuSetting = document.querySelector(".menu-setting");
       if(btn_setting && menuSetting){
         btn_setting.addEventListener("click", function () {
-          if (menuSetting.classList.contains("flex-display")) {
-              menuSetting.classList.remove("flex-display");
-          } else {
-              menuSetting.classList.add("flex-display");
-          }
+          menuSetting.classList.toggle('flex-display');
       });
       }
+
+      const dropdownItems: NodeListOf<Element> = document.querySelectorAll('.dropdown-item');
+      const textdropdown: HTMLElement | null = document.getElementById('text-dropdown-setting');
+
+      
+      dropdownItems.forEach((item: Element) => {
+        item.addEventListener('click', function(this: Element) {
+          if (textdropdown) {
+          textdropdown.textContent = this.textContent || '';
+          }
+        });
+      });
+
+
 
       //showform-Quanlydonggop
       const btnQuanlydonggop = document.getElementById("button-gr-body-mid-mngcontribute") as HTMLElement | null;

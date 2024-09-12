@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Image from "next/image";
 
@@ -21,6 +21,7 @@ const MessageInput: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [chat00Div, setChat00Div] = useState<HTMLElement | null>(null); // Sử dụng state để lưu trữ phần tử chat00
   const [typingMessage, setTypingMessage] = useState<string>(''); // Trạng thái tin nhắn đang gõ
+  const messagesEndRef = useRef<HTMLDivElement>(null); // Tạo ref cho phần tử cuộn
 
 
   const userAvatar = 'icon/Profile.svg'; // Đặt đường dẫn tới ảnh avatar người dùng
@@ -110,15 +111,35 @@ const MessageInput: React.FC = () => {
                 Your browser does not support the video tag.
               </video>
             )}
-          </div>
 
+          </div>
+          
+
+          <div ref={messagesEndRef} /> {/* Thẻ div để cuộn đến */}
           
         </div>
+        
+        
       ))}
     </div>
   );
 
 
+  const handleKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault(); 
+        handleSendText(); 
+    }
+};
+
+
+ // Cuộn đến cuối nội dung mỗi khi messages thay đổi
+
+ useEffect(() => {
+  if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  }
+}, [messages]);
 
   return (
 
@@ -133,6 +154,7 @@ const MessageInput: React.FC = () => {
             className="d-flex"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={handleKeyDown} // Thêm sự kiện onKeyDown
             required
           />
           <div className="d-flex" style={{ position: 'absolute', bottom: 10, right: 10, gap: 10 }}>

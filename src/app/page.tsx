@@ -6,6 +6,7 @@ import React from 'react';
 
 
 const HomePage = async () => {
+  
   return (
     <>
       <div className="d-flex" id="main-body">
@@ -34,7 +35,7 @@ const HomePage = async () => {
           <div className="d-flex flex-column" id="mid-top-body">
             <div className="d-flex" id="title-mid-top-body">
               <div className="d-flex" style={{ gap: 4 }}>
-                <span className="title-hello">Chào Hoàng,</span>
+                <span className="title-hello">Chào Hiếu,</span>
                 <Image alt='image' src="icon/image 1805.svg" width={32} height={32} priority/>
               </div>
             </div>
@@ -148,14 +149,13 @@ const HomePage = async () => {
                       <div className="menu-dropdown d-flex flex-column">
                         <span className="text-group">Ngôn ngữ phản hồi</span>
                         <div className="dropdown">
-                          <button className="btn-dropdown d-flex align-items-center justify-content-between" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span className="text-group">Tiếng Việt</span>
+                          <button className="btn-dropdown d-flex align-items-center justify-content-between" id="dropdownMenuButton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span id='text-dropdown-setting'>Tiếng Việt</span>
                             <Image alt='image' id="close-contribute" src="icon/Chevron Down.svg" width={20} height={20} />
                           </button>
-                          <ul className="dropdown-menu">
-                            <li>
-                              <a className="dropdown-item" href="#"> Tiếng Anh </a>
-                            </li>
+                          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <li><a className="dropdown-item" href="#">Tiếng Việt</a></li>
+                            <li><a className="dropdown-item" href="#">Tiếng Anh</a></li>
                           </ul>
                         </div>
                       </div>
