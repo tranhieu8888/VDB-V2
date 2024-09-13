@@ -5,7 +5,7 @@ import Image from 'next/image';
 const Navbar = () => {
   return (
     <>
-    <div className="navbar navbar-expand-lg navbar-light bg-white justify-content-between" style={{padding: '24px', position: 'fixed', zIndex: 1, width: '100%', height: '64px'}}>
+    <div className="navbar navbar-expand-lg navbar-light bg-white justify-content-between" style={{padding: '24px', position: 'fixed', zIndex: 99999999, width: '100%', height: '64px'}}>
     <div id="menu-navbar" className="d-flex align-items-center" style={{gap: '24px'}}>
       <Image alt='image' id="sc-menu" src="icon/mingcute_menu-fill.svg" width={24} height={24} style={{cursor: 'pointer'}} />
       <div className="d-flex align-items-center" id="navbar-weather" style={{gap: '8px'}}>

@@ -1,5 +1,7 @@
 * {
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -113,9 +115,9 @@ body {
 /* # Mobie: width < 740px
 // Mobie */
 @media only screen and (max-width: 768px) {
-  .group-menu-future {
-    top: 100% !important;
-  }
+  /* .group-menu-future {
+    top: 50% !important;
+  } */
 
   #main-body-multiResults {
     width: 97% !important;
@@ -1310,6 +1312,8 @@ a:hover #textSub-menuleft {
   background-color: #ffff;
   padding: 12px;
   z-index: 9999;
+  top: 50% !important;
+
 }
 
 .text-future {

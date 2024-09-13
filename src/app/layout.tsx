@@ -9,7 +9,7 @@ export default function Rootlayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <title>Header Design</title>
+        <title>Module AI</title>
         <link rel="stylesheet" href="/css/owl.carousel.min.css" />
         <link rel="stylesheet" href="/css/owl.theme.default.min.css" />
         <link rel="stylesheet" href="/css/jquery.fancybox.min.css" />
