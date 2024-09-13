@@ -114,7 +114,7 @@ body {
 // Mobie */
 @media only screen and (max-width: 768px) {
   .group-menu-future {
-    top: 50% !important;
+    top: 100% !important;
   }
 
   #main-body-multiResults {
