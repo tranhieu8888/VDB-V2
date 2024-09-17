@@ -193,6 +193,8 @@ body {
     box-sizing: border-box;
   }
 
+
+
   .button-gr-body-mid {
     width: 200px !important;
   }
@@ -389,6 +391,7 @@ body {
 
 .child-items-suggest {
   height: 32px;
+  /* height: 100%; */
   border-radius: 16px;
   border: 1px solid var(--Gray-Button-BG, #0000000d);
   padding: 4px 16px 4px 16px;
@@ -397,6 +400,20 @@ body {
   box-shadow: 0px 1px 3px 0px #0000001a;
   cursor: pointer;
   justify-content: center;
+}
+
+
+
+.mainTopic {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mainTopic::-webkit-scrollbar {
+  display: none; /* Ẩn thanh cuộn */
 }
 
 .items-suggest {
@@ -711,6 +728,7 @@ body {
   border-radius: 16px;
   background: var(--White, #ffffff);
   border: 1px solid var(--Gray-Button-BG, #0000000d);
+  margin-bottom: 14px;
 }
 
 #suggest-contain {
@@ -720,6 +738,14 @@ body {
   border-radius: 8px;
   background-color: #0000000d;
   cursor: pointer;
+}
+
+#suggest-contain:hover {
+  background-color: #3498DB33;
+}
+
+#more-topic:hover {
+  background-color: #3498DB33 !important;
 }
 
 #text-suggest {
@@ -1081,15 +1107,44 @@ td {
 }
 
 .scroll-container {
-  gap: 8px;
+  gap: 16px;
   overflow: hidden;
+  overflow-x: auto;
   /* Ẩn thanh cuộn */
   white-space: nowrap;
   /* Đảm bảo nội dung không bị ngắt dòng */
-  cursor: grab;
+  /* cursor: grab; */
   /* Thay đổi con trỏ khi kéo */
   position: relative;
   /* Để xử lý vị trí con trỏ */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.listUsersAI {
+  cursor: pointer;
+}
+
+.topic-full {
+  overflow: hidden;
+  overflow-x: auto;
+  
+}
+
+.topic-full::-webkit-scrollbar {
+  display: none; /* Ẩn thanh cuộn */
+}
+
+.listUsersAI.active {
+  border-bottom: 2px solid #2999e3;
+  padding-bottom: 5px;
+}
+
+#suggestTopic {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .image-users {
@@ -1103,10 +1158,11 @@ td {
 .item-image {
   user-select: none;
   border-radius: 8px;
-  margin-right: 5px;
+  /* margin-right: 5px; */
   image-rendering: -webkit-optimize-contrast;
 
 }
+
 
 .menu-itemfuture.active {
   background-color: #3498db33;
@@ -1310,10 +1366,9 @@ a:hover #textSub-menuleft {
   position: sticky;
   bottom: 0;
   background-color: #ffff;
-  padding: 12px;
+  padding-bottom: 12px;
   z-index: 9999;
-  top: 50% !important;
-
+  /* top: 40%; */
 }
 
 .text-future {

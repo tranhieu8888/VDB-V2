@@ -15,18 +15,13 @@ type Message = {
 };
 
 
-
 const MessageInput: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [chat00Div, setChat00Div] = useState<HTMLElement | null>(null); // Sử dụng state để lưu trữ phần tử chat00
   const [typingMessage, setTypingMessage] = useState<string>(''); // Trạng thái tin nhắn đang gõ
   const messagesEndRef = useRef<HTMLDivElement>(null); // Tạo ref cho phần tử cuộn
-
-
   const userAvatar = 'icon/Profile.svg'; // Đặt đường dẫn tới ảnh avatar người dùng
-
-
 
   useEffect(() => {
     // Chỉ gọi document.getElementById khi component được render trên client
@@ -34,39 +29,47 @@ const MessageInput: React.FC = () => {
     setChat00Div(chatElement);
   }, []); // useEffect không có dependency sẽ chỉ chạy một lần khi component mount
 
-
   const handleSendText = async () => {
     if (inputValue.trim() === '') return;
 
     const userMessage = {
-      sender: 'user',
+      id: messages.length + 1,
+      sender: 'Bạn',
       content: inputValue,
-      avatar: userAvatar, // Sử dụng avatar người dùng
+      avatar: userAvatar,
     };
 
     // Gửi tin nhắn tới API
     try {
-      const response = await fetch('/api/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userMessage),
-      });
+      const response = await fetch(`https://api.vdiarybook.net/api/posts?search=${encodeURIComponent(inputValue)}`);
 
       if (!response.ok) {
         throw new Error('Failed to send message');
       }
 
-      const { userMessage: newUserMessage, botMessage } = await response.json();
+      const result = await response.json();
+      const postData = result.data && result.data.length > 0 ? result.data[0] : null;
+      const botMessageContent = postData
+      ? postData.post_content.replace(/"/g, '')  // Loại bỏ dấu " trong content
+      : 'No result found';
+    
+    const botMessageImage = postData && postData.post_link_meta && postData.post_link_meta.post_link_images
+      ? postData.post_link_meta.post_link_images.replace(/"/g, '')  // Loại bỏ dấu " trong imageUrl
+      : null;
 
-      // Cập nhật state với tin nhắn mới mà không làm mới trang
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { ...newUserMessage, avatar: userAvatar, sender: 'Bạn' }, // Cập nhật avatar cho tin nhắn người dùng
-        { ...botMessage, isTyping: true} // Cập nhật avatar cho tin nhắn AI
-      ]);
+      console.log(botMessageImage);
 
+      const botMessage = {
+        id: messages.length + 2,
+        sender: 'VDB AI',
+        content: botMessageContent,
+        avatar: 'icon/image 1.svg', // Avatar của bot
+        imageUrl: botMessageImage,  // Thêm hình ảnh từ API nếu có
+        isTyping: true,
+      };
+
+
+      setMessages((prevMessages) => [...prevMessages, userMessage, botMessage]);
 
         // Hiệu ứng đánh máy cho tin nhắn AI
         let currentIndex = 0;
@@ -82,7 +85,7 @@ const MessageInput: React.FC = () => {
               )
             );
           }
-        }, 10); // Điều chỉnh tốc độ đánh máy
+        }, 1); // Điều chỉnh tốc độ đánh máy
 
 
 
@@ -104,7 +107,7 @@ const MessageInput: React.FC = () => {
           </div>
           <div className="message-content">
             {message.isTyping ? typingMessage : message.content}
-            {message.imageUrl && <a href={message.imageUrl} data-fancybox="gallery" className="image-link"><Image alt='AI Image' src={message.imageUrl} width={300} height={225}/></a>}
+            {message.imageUrl && <a href={message.imageUrl} data-fancybox="gallery" className="image-link"><img alt='AI Image' src={message.imageUrl} width={300} height={225}/></a>}
             {message.videoUrl && (
               <video controls className="message-video" width={300} height={225}>
                 <source src={message.videoUrl} type="video/mp4" />
@@ -113,16 +116,12 @@ const MessageInput: React.FC = () => {
             )}
 
           </div>
-          
-
           <div ref={messagesEndRef} /> {/* Thẻ div để cuộn đến */}
-          
         </div>
-        
-        
       ))}
     </div>
   );
+
 
 
   const handleKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
@@ -159,7 +158,7 @@ const MessageInput: React.FC = () => {
           />
           <div className="d-flex" style={{ position: 'absolute', bottom: 10, right: 10, gap: 10 }}>
             <a href="#" onClick={handleSendText}>
-              <Image src="icon/mingcute_send-line.svg" width={20} height={20} alt="Send" />
+              <Image src="icon/mingcute_send-line.svg" width={20} height={20} alt="Send"/>
             </a>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import CarouselClientComponent from './components/CarouselClientComponent';
 import ImageUploadComponent from './components/imageUploadLogic';
 import MessageInput from './components/MessageInput'; 
+import ListUserAI from './components/listuserai';
 import Image from "next/image";
 import React from 'react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -66,82 +67,111 @@ const HomePage = async () => {
 
           <div id="messages" className="d-flex flex-column"/>
           <div className='group-menu-future'>
-            <div className="d-flex flex-column">
-              <div className="d-flex">
-                <div className="scroll-container d-flex flex-column">
-                  <div className="owl-carousel owl-theme image-users d-flex">
-                    <div>
-                      <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" priority/>
-                    </div>
-                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" priority/>
-                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" priority/>
-                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" priority/>
-                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" priority/>
-                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" priority/>
-                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" priority/>
-                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" priority/>
-                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" priority/>
-                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" priority/>
-                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" priority/>
-                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" priority/>
-                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" priority/>
-                    <Image alt='image' className="item-image" src="icon/image 1801.svg" width={40} height={40} draggable="false" priority/>
-                  </div>
-                  <div className="d-flex align-items-center" style={{ gap: 8, height: 38 }}>
-                    <span className="title-topic">Gợi ý chủ đề:</span>
-                    <div className="owl-carousel">
-                      <div className="full-suggest d-flex">
-                        <div className="items-suggest d-flex">
-                          <div className="child-items-suggest d-flex align-items-center">
-                            <Image alt='image' src="icon/luggage 1.svg" width={20} height={20} priority/>
-                            <span className="text-topic">Du lịch</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="full-suggest d-flex">
-                        <div className="items-suggest d-flex">
-                          <div className="child-items-suggest d-flex align-items-center">
-                            <Image alt='image' src="icon/luggage 1.svg" width={20} height={20} priority/>
-                            <span className="text-topic">Ẩm thực</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="full-suggest d-flex">
-                        <div className="items-suggest d-flex">
-                          <div className="child-items-suggest d-flex align-items-center">
-                            <Image alt='image' src="icon/luggage 1.svg" width={20} height={20} priority/>
-                            <span className="text-topic">Công nghệ</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="full-suggest d-flex">
-                        <div className="items-suggest d-flex">
-                          <div className="child-items-suggest d-flex align-items-center">
-                            <Image alt='image' src="icon/luggage 1.svg" width={20} height={20} priority/>
-                            <span className="text-topic">Thời trang</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="full-suggest d-flex">
-                        <div className="items-suggest d-flex">
-                          <div className="child-items-suggest d-flex align-items-center">
-                            <Image alt='image' src="icon/luggage 1.svg" width={20} height={20} priority/>
-                            <span className="text-topic">Thể thao</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
+
+          <div className="d-flex flex-column" id="suggest">
+  <span
+    style={{
+      fontSize: 14,
+      fontWeight: 400,
+      lineHeight: "16.94px",
+      color: "#636363"
+    }}
+  >
+    Chủ đề khác
+  </span>
+  <div className="topic-full d-flex" style={{ gap: 8 }}>
+    <div id="suggest-contain" className="d-flex align-items-center">
+      <img src="icon/book 2.svg" width={20} height={20} />
+      <span id="text-suggest"> Nhật ký</span>
+    </div>
+    <div id="suggest-contain" className="d-flex align-items-center">
+      <img src="icon/hashtag.svg" width={20} height={20} />
+      <span id="text-suggest">Hashtag</span>
+    </div>
+    <div id="suggest-contain" className="d-flex align-items-center">
+      <img src="icon/picture 1 (1).svg" width={20} height={20} />
+      <span id="text-suggest"> Hình ảnh</span>
+    </div>
+    <div id="suggest-contain" className="d-flex align-items-center">
+      <img src="icon/reel (1).svg" width={20} height={20} />
+      <span id="text-suggest"> Video</span>
+    </div>
+    <div id="suggest-contain" className="d-flex align-items-center">
+      <img src="icon/trend 1.svg" width={20} height={20} />
+      <span id="text-suggest"> Xu hướng</span>
+    </div>
+    <div id="suggest-contain" className="d-flex align-items-center">
+      <img src="icon/facebook-page 1 (1).svg" width={20} height={20} />
+      <span id="text-suggest"> Trang</span>
+    </div>
+    <div
+      id="more-topic"
+      className="d-flex align-items-center justify-content-center"
+      style={{
+        width: 28,
+        height: 28,
+        padding: "8px 12px 8px 12px",
+        gap: 8,
+        borderRadius: 8,
+        background: "var(--Gray-Button-BG, #0000000D)",
+        cursor: "pointer"
+      }}
+    >
+      <img src="icon/ic_baseline-more-horiz.svg" width={20} height={20} />
+      <div id="mainDropdown">
+        <div>
+          <div id="elmDropdown" className="d-flex align-items-center">
+            <img src="icon/user (1) 1.svg" width={20} height={20} />
+            <span id="text-dropdown">Mọi người</span>
+          </div>
+          <div id="elmDropdown" className="d-flex align-items-center">
+            <img src="icon/office 1.svg" width={20} height={20} />
+            <span id="text-dropdown">Doanh nghiệp</span>
+          </div>
+          <div id="elmDropdown" className="d-flex align-items-center">
+            <img src="icon/connection.svg" width={20} height={20} />
+            <span id="text-dropdown">Tổ chức</span>
+          </div>
+          <div id="elmDropdown" className="d-flex align-items-center">
+            <img src="icon/ceo.svg" width={20} height={20} />
+            <span id="text-dropdown">CEO</span>
+          </div>
+          <div id="elmDropdown" className="d-flex align-items-center">
+            <img src="icon/people.svg" width={20} height={20} />
+            <span id="text-dropdown">Nhóm</span>
+          </div>
+          <div id="elmDropdown" className="d-flex align-items-center">
+            <img src="icon/files 1.svg" width={20} height={20} />
+            <span id="text-dropdown">Tài liệu</span>
+          </div>
+          <div id="elmDropdown" className="d-flex align-items-center">
+            <img src="icon/location 1 (1).svg" width={20} height={20} />
+            <span id="text-dropdown">Vị trí</span>
+          </div>
+          <div id="elmDropdown" className="d-flex align-items-center">
+            <img src="icon/calendar (1) 1 (1).svg" width={20} height={20} />
+            <span id="text-dropdown">Sự kiện</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+            <div id='suggestMain' className="d-flex flex-column">
+              <ListUserAI/>
             </div>
             <div className="container">
                 <span className="hover-text">/timlietsi</span>
                 <span className="hover-text">/timnhanthan</span>
-                <span className="hover-text">/timtrelac</span>
+                {/* <span className="hover-text">/timtrelac</span>
                 <span className="hover-text">/timmolietsi</span>
-                <span className="hover-text">/timdongdoithatlac</span>
+                <span className="hover-text">/timdongdoithatlac</span> */}
             </div>
+
+
             <div className="d-flex flex-column" id="mid-bottom-body">
               <div className="contain-groupbtn-bdmid d-flex flex-column">
                 <div id="groupButton-body-mid" className="groupButton-body-mid d-flex">
@@ -185,8 +215,7 @@ const HomePage = async () => {
                   </div>
                 </div>
                
-                
-                <MessageInput />
+                <MessageInput/>
               </div>
             </div>
           </div>

@@ -1,0 +1,67 @@
+  const userAvatar = 'icon/Profile.svg'; // Đặt đường dẫn tới ảnh avatar người dùng
+
+
+
+  useEffect(() => {
+    // Chỉ gọi document.getElementById khi component được render trên client
+    const chatElement = document.getElementById('messages');
+    setChat00Div(chatElement);
+  }, []); // useEffect không có dependency sẽ chỉ chạy một lần khi component mount
+
+
+  const handleSendText = async () => {
+    if (inputValue.trim() === '') return;
+
+    const userMessage = {
+      sender: 'user',
+      content: inputValue,
+      avatar: userAvatar, // Sử dụng avatar người dùng
+    };
+
+    // Gửi tin nhắn tới API
+    try {
+      const response = await fetch('/api/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userMessage),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      const { userMessage: newUserMessage, botMessage } = await response.json();
+
+      // Cập nhật state với tin nhắn mới mà không làm mới trang
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { ...newUserMessage, avatar: userAvatar, sender: 'Bạn' }, // Cập nhật avatar cho tin nhắn người dùng
+        { ...botMessage, isTyping: true} // Cập nhật avatar cho tin nhắn AI
+      ]);
+
+
+        // Hiệu ứng đánh máy cho tin nhắn AI
+        let currentIndex = 0;
+        const typingInterval = setInterval(() => {
+          currentIndex++;
+          setTypingMessage(botMessage.content.slice(0, currentIndex));
+  
+          if (currentIndex === botMessage.content.length) {
+            clearInterval(typingInterval);
+            setMessages(prevMessages =>
+              prevMessages.map(msg =>
+                msg.id === botMessage.id ? { ...msg, content: botMessage.content, isTyping: false } : msg
+              )
+            );
+          }
+        }, 10); // Điều chỉnh tốc độ đánh máy
+
+
+
+      setInputValue(''); // Reset lại input sau khi gửi
+    } catch (error) {
+      console.error('Error sending message:', error);
+    }
+  };

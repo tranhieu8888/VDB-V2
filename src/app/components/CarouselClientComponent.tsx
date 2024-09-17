@@ -119,6 +119,30 @@ const CarouselClientComponent = () => {
       });
 
 
+      // Show Dropdown
+      const moreTopic = document.getElementById('more-topic') as HTMLElement | null;
+      const mainDropdown = document.getElementById('mainDropdown') as HTMLElement | null;
+
+      if (moreTopic) {
+        moreTopic.addEventListener('click', function () {
+          // Lấy giá trị hiện tại của display từ CSS
+          if(mainDropdown){
+          const computedStyle = window.getComputedStyle(mainDropdown);
+          const displayStyle = computedStyle.getPropertyValue('display');
+          // Kiểm tra và thay đổi trạng thái của mainDropdown
+          if (displayStyle === 'none') {
+            mainDropdown.style.display = 'block'; // Nếu ẩn, hiển thị lên
+          } else {
+            mainDropdown.style.display = 'none'; // Nếu hiển thị, ẩn đi
+          }
+
+          }
+      
+      
+        });
+      }
+
+
 
       //showform-Quanlydonggop
       const btnQuanlydonggop = document.getElementById("button-gr-body-mid-mngcontribute") as HTMLElement | null;
