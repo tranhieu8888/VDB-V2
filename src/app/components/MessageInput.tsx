@@ -32,6 +32,11 @@ const MessageInput: React.FC = () => {
   const handleSendText = async () => {
     if (inputValue.trim() === '') return;
 
+    const textarea = document.getElementById('text-box-midBody') as HTMLTextAreaElement;
+    textarea.style.removeProperty('height');
+
+
+
     const userMessage = {
       id: messages.length + 1,
       sender: 'Bạn',
@@ -50,14 +55,12 @@ const MessageInput: React.FC = () => {
       const result = await response.json();
       const postData = result.data && result.data.length > 0 ? result.data[0] : null;
       const botMessageContent = postData
-      ? postData.post_content.replace(/"/g, '')  // Loại bỏ dấu " trong content
-      : 'No result found';
-    
-    const botMessageImage = postData && postData.post_link_meta && postData.post_link_meta.post_link_images
-      ? postData.post_link_meta.post_link_images.replace(/"/g, '')  // Loại bỏ dấu " trong imageUrl
-      : null;
+        ? postData.post_content.replace(/"/g, '')  // Loại bỏ dấu " trong content
+        : 'No result found';
 
-      console.log(botMessageImage);
+      const botMessageImage = postData && postData.post_link_meta && postData.post_link_meta.post_link_images
+        ? postData.post_link_meta.post_link_images.replace(/"/g, '')  // Loại bỏ dấu " trong imageUrl
+        : null;
 
       const botMessage = {
         id: messages.length + 2,
@@ -71,21 +74,21 @@ const MessageInput: React.FC = () => {
 
       setMessages((prevMessages) => [...prevMessages, userMessage, botMessage]);
 
-        // Hiệu ứng đánh máy cho tin nhắn AI
-        let currentIndex = 0;
-        const typingInterval = setInterval(() => {
-          currentIndex++;
-          setTypingMessage(botMessage.content.slice(0, currentIndex));
-  
-          if (currentIndex === botMessage.content.length) {
-            clearInterval(typingInterval);
-            setMessages(prevMessages =>
-              prevMessages.map(msg =>
-                msg.id === botMessage.id ? { ...msg, content: botMessage.content, isTyping: false } : msg
-              )
-            );
-          }
-        }, 1); // Điều chỉnh tốc độ đánh máy
+      // Hiệu ứng đánh máy cho tin nhắn AI
+      let currentIndex = 0;
+      const typingInterval = setInterval(() => {
+        currentIndex++;
+        setTypingMessage(botMessage.content.slice(0, currentIndex));
+
+        if (currentIndex === botMessage.content.length) {
+          clearInterval(typingInterval);
+          setMessages(prevMessages =>
+            prevMessages.map(msg =>
+              msg.id === botMessage.id ? { ...msg, content: botMessage.content, isTyping: false } : msg
+            )
+          );
+        }
+      }, 1); // Điều chỉnh tốc độ đánh máy
 
 
 
@@ -107,7 +110,7 @@ const MessageInput: React.FC = () => {
           </div>
           <div className="message-content">
             {message.isTyping ? typingMessage : message.content}
-            {message.imageUrl && <a href={message.imageUrl} data-fancybox="gallery" className="image-link"><img alt='AI Image' src={message.imageUrl} width={300} height={225}/></a>}
+            {message.imageUrl && <a href={message.imageUrl} data-fancybox="gallery" className="image-link"><img alt='AI Image' src={message.imageUrl} width={300} height={225} /></a>}
             {message.videoUrl && (
               <video controls className="message-video" width={300} height={225}>
                 <source src={message.videoUrl} type="video/mp4" />
@@ -123,22 +126,22 @@ const MessageInput: React.FC = () => {
   );
 
 
-
   const handleKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
     if (e.key === 'Enter') {
-        e.preventDefault(); 
-        handleSendText(); 
+      e.preventDefault();
+      handleSendText();
     }
-};
+  };
 
 
- // Cuộn đến cuối nội dung mỗi khi messages thay đổi
+  // Cuộn đến cuối nội dung mỗi khi messages thay đổi
 
- useEffect(() => {
-  if (messagesEndRef.current) {
+  useEffect(() => {
+    if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-  }
-}, [messages]);
+    }
+  }, [messages]);
+
 
   return (
 
@@ -158,7 +161,7 @@ const MessageInput: React.FC = () => {
           />
           <div className="d-flex" style={{ position: 'absolute', bottom: 10, right: 10, gap: 10 }}>
             <a href="#" onClick={handleSendText}>
-              <Image src="icon/mingcute_send-line.svg" width={20} height={20} alt="Send"/>
+              <Image src="icon/mingcute_send-line.svg" width={20} height={20} alt="Send" />
             </a>
           </div>
         </div>

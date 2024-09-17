@@ -20,6 +20,7 @@ interface User {
 const ListUserAI: React.FC = () => {
     const [users, setUsers] = useState<User[]>([]);
     const [isLoading, setIsLoading] = useState(true); // Trạng thái tải
+    const [activeUserId, setActiveUserId] = useState<string | null>(null); // Trạng thái lưu ID người dùng được chọn
 
     useEffect(() => {
         // Gọi API để lấy dữ liệu
@@ -55,18 +56,12 @@ const ListUserAI: React.FC = () => {
     }, []);
 
 
-    if (typeof document !== "undefined") {
 
-        // Đảm bảo mã này chỉ chạy trên client-side
-        const userAI = document.querySelectorAll<HTMLDivElement>(".listUsersAI");
-        userAI.forEach((user) => {
-          user.addEventListener("click", function (this: HTMLDivElement) {
-            userAI.forEach((box) => box.classList.remove("active"));
-            this.classList.add("active");
-          });
-        });
-    }
-        
+    const handleUserClick = (userId: string) => {
+        // Nếu đã chọn user, click lại sẽ bỏ chọn
+        setActiveUserId(prev => (prev === userId ? null : userId));
+    };
+
     // Phần gợi ý chủ đề (chỉ in 1 lần)
     const renderTopicSuggestions = () => {
         const topics = users.flatMap(user => user.directory || []);
@@ -81,7 +76,7 @@ const ListUserAI: React.FC = () => {
                         <div key={index} className="full-suggest d-flex">
                             <div className="items-suggest d-flex">
                                 <div className="child-items-suggest d-flex align-items-center">
-                                    <Image alt='image' src="icon/luggage 1.svg" width={20} height={20} priority/>
+                                    <Image alt='image' src="icon/luggage 1.svg" width={20} height={20} priority />
                                     <span className="text-topic">{topic}</span>
                                 </div>
                             </div>
@@ -97,40 +92,43 @@ const ListUserAI: React.FC = () => {
 
     return (
         <div>
-        {/* In danh sách user */}
-        <div className="d-flex flex-column">
-            <div className="scroll-container d-flex" style={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
-                {isLoading ? (
-                    <SkeletonTheme baseColor="#eeeeee" highlightColor="#f3f6f4">
-                        {/* Hiển thị skeleton loader cho avatar người dùng */}
-                        {Array.from({ length: 2 }).map((_, index) => (
-                            <div key={index} className="listUsersAI">
-                                <Skeleton circle height={40} width={40} />
+            {/* In danh sách user */}
+            <div className="d-flex flex-column">
+                <div className="scroll-container d-flex" style={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
+                    {isLoading ? (
+                        <SkeletonTheme baseColor="#eeeeee" highlightColor="#f3f6f4">
+                            {/* Hiển thị skeleton loader cho avatar người dùng */}
+                            {Array.from({ length: 2 }).map((_, index) => (
+                                <div key={index} className="listUsersAI">
+                                    <Skeleton circle height={40} width={40} />
+                                </div>
+                            ))}
+                        </SkeletonTheme>
+                    ) : (
+                        users.map((user) => (
+                            <div key={user.id}
+                                className={`listUsersAI ${activeUserId === user.id ? 'active' : ''}`} // Thêm class "active" khi được chọn
+                                onClick={() => handleUserClick(user.id)} // Bắt sự kiện click
+                            >
+                                <Image
+                                    alt="User avatar"
+                                    className="item-image"
+                                    src={user.avatar}
+                                    width={40}
+                                    height={40}
+                                    draggable="false"
+                                    priority
+                                />
                             </div>
-                        ))}
-                    </SkeletonTheme>
-                ) : (
-                    users.map((user) => (
-                        <div key={user.id} className="listUsersAI">
-                            <Image
-                                alt="User avatar"
-                                className="item-image"
-                                src={user.avatar}
-                                width={40}
-                                height={40}
-                                draggable="false"
-                                priority
-                            />
-                        </div>
-                    ))
-                )}
-            </div>
+                        ))
+                    )}
+                </div>
 
-            {/* Chỉ in gợi ý chủ đề 1 lần */}
-            {renderTopicSuggestions()}
+                {/* Chỉ in gợi ý chủ đề 1 lần */}
+                {renderTopicSuggestions()}
+            </div>
         </div>
-    </div>
-);
+    );
 };
 
 export default ListUserAI;
