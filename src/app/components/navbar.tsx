@@ -68,7 +68,7 @@ const Navbar = () => {
         </div>
       </div>
       <div id="iProfile">
-        <a href="#"><Image alt='image' src="icon/Profile.svg" width={40} height={40} /></a>
+        <a href="#"><Image alt='image' src="icon/profile-major.svg" width={40} height={40} /></a>
         <a href="#"><Image alt='image' src="icon/icon-park-solid_down-one.svg" width={24} height={24} /></a>
       </div>
     </div>

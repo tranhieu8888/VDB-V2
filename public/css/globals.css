@@ -265,6 +265,13 @@ body {
   }
 }
 
+/* Dành cho màn hình lớn (PC) */
+@media (min-width: 1200px) {
+  #mid-menu-body {
+    margin-left: 30% !important;
+  }
+}
+
 
 /* Media query cho thiết bị di động */
 @media (max-width: 1000px) {
@@ -415,7 +422,7 @@ body {
 
 .mainTopic {
   display: flex;
-  overflow-x: auto;
+  overflow-x: auto !important;
   gap: 10px;
   height: 100%;
   overflow: hidden;
@@ -642,7 +649,8 @@ body {
 }
 
 #menu-left-body {
-  position: relative;
+  /* position: relative; */
+  position: fixed;
   width: 300px;
   height: 400px;
   border-radius: 8px;
@@ -651,6 +659,7 @@ body {
   gap: 16px;
   background-color: #ffffff;
   box-shadow: 0px 1px 3px 0px #0000001a;
+  z-index: 1;
 }
 
 #mid-menu-body {
@@ -662,6 +671,7 @@ body {
   /* aspect-ratio: 1 / 1.5; */
   min-height: 100vh;
   position: relative;
+
 
 }
 
@@ -1415,6 +1425,11 @@ a:hover #textSub-menuleft {
   font-size: 14px;
   line-height: 16.94px;
   color: #1f1f1f;
+  text-wrap: nowrap;
+}
+
+#text-suggest {
+  text-wrap: nowrap;
 }
 
 .text-topic {
@@ -1422,6 +1437,7 @@ a:hover #textSub-menuleft {
   font-size: 14px;
   line-height: 14.94px;
   color: #636363;
+  text-wrap: nowrap;
 }
 
 .text-group {
@@ -1429,6 +1445,8 @@ a:hover #textSub-menuleft {
   font-size: 14px;
   line-height: 16.94px;
   color: #1f1f1f;
+
+  text-wrap: nowrap;
 }
 
 .btn-beta {

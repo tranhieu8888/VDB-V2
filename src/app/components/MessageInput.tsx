@@ -76,6 +76,8 @@ const MessageInput: React.FC = () => {
 
       // Hiệu ứng đánh máy cho tin nhắn AI
       let currentIndex = 0;
+      const maxDuration = 5000; // 5 giây (5000ms)
+
       const typingInterval = setInterval(() => {
         currentIndex++;
         setTypingMessage(botMessage.content.slice(0, currentIndex));
@@ -88,9 +90,17 @@ const MessageInput: React.FC = () => {
             )
           );
         }
-      }, 1); // Điều chỉnh tốc độ đánh máy
+      }, 0); // Điều chỉnh tốc độ đánh máy
 
-
+      // Đảm bảo toàn bộ tin nhắn sẽ hiện ra sau 5 giây
+      setTimeout(() => {
+        clearInterval(typingInterval);  // Dừng lại quá trình đánh máy
+        setMessages(prevMessages =>
+          prevMessages.map(msg =>
+            msg.id === botMessage.id ? { ...msg, content: botMessage.content, isTyping: false } : msg
+          )
+        );
+      }, maxDuration);  // Sau 5 giây, buộc hiện hết nội dung
 
       setInputValue(''); // Reset lại input sau khi gửi
     } catch (error) {
