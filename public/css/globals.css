@@ -154,6 +154,7 @@ body {
 
   #mid-menu-body {
     width: 100% !important;
+    min-height: calc(100vh - 72px);
     /* height: 100% !important; */
   }
 
@@ -269,6 +270,7 @@ body {
 @media (min-width: 1200px) {
   #mid-menu-body {
     margin-left: 30% !important;
+    min-height: calc(100vh - 72px);
   }
 }
 
