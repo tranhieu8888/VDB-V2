@@ -8,6 +8,21 @@ body {
   background-color: #f8f9fa;
 }
 
+.show {
+  display: block !important;
+}
+
+.hashtag {
+  color: rgb(41, 142, 236);
+  font-weight: bold;
+}
+
+.hashtag-name {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 @keyframes typewriter {
   from {
     width: 0;
@@ -115,9 +130,11 @@ body {
 /* # Mobie: width < 740px
 // Mobie */
 @media only screen and (max-width: 768px) {
-  /* .group-menu-future {
-    width: 24.5rem !important;
-  } */
+
+  #mainDropdown {
+    margin-bottom: 22rem !important;
+    margin-right: 50rem !important;
+  }
 
   #text-box-midBody {
     height: 48px !important;

@@ -19,8 +19,12 @@ const MessageInput: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [chat00Div, setChat00Div] = useState<HTMLElement | null>(null); // Sử dụng state để lưu trữ phần tử chat00
+  const [hashtagDiv, setHashtagDiv] = useState<HTMLElement | null>(null); // Sử dụng state để lưu trữ phần tử chat00
+
   const [typingMessage, setTypingMessage] = useState<string>(''); // Trạng thái tin nhắn đang gõ
   const messagesEndRef = useRef<HTMLDivElement>(null); // Tạo ref cho phần tử cuộn
+  const [hashtags, setHashtags] = useState<string[]>([]); // Mảng chứa các hashtag được phát hiện
+
   const userAvatar = 'icon/Profile.svg'; // Đặt đường dẫn tới ảnh avatar người dùng
 
   useEffect(() => {
@@ -29,13 +33,17 @@ const MessageInput: React.FC = () => {
     setChat00Div(chatElement);
   }, []); // useEffect không có dependency sẽ chỉ chạy một lần khi component mount
 
+  useEffect(() => {
+    // Chỉ gọi document.getElementById khi component được render trên client
+    const hashtagElement = document.getElementById('suggest-hashtags');
+    setHashtagDiv(hashtagElement);
+  }, []); // useEffect không có dependency sẽ chỉ chạy một lần khi component mount
+
   const handleSendText = async () => {
     if (inputValue.trim() === '') return;
 
     const textarea = document.getElementById('text-box-midBody') as HTMLTextAreaElement;
     textarea.style.removeProperty('height');
-
-
 
     const userMessage = {
       id: messages.length + 1,
@@ -44,7 +52,6 @@ const MessageInput: React.FC = () => {
       avatar: userAvatar,
     };
 
-    // Gửi tin nhắn tới API
     try {
       const response = await fetch(`https://api.vdiarybook.net/api/posts?search=${encodeURIComponent(inputValue)}`);
 
@@ -66,41 +73,35 @@ const MessageInput: React.FC = () => {
         id: messages.length + 2,
         sender: 'VDB AI',
         content: botMessageContent,
-        avatar: 'icon/image 1.svg', // Avatar của bot
-        imageUrl: botMessageImage,  // Thêm hình ảnh từ API nếu có
+        avatar: 'icon/image 1.svg',
+        imageUrl: botMessageImage,
         isTyping: true,
       };
 
-
       setMessages((prevMessages) => [...prevMessages, userMessage, botMessage]);
 
-      // Hiệu ứng đánh máy cho tin nhắn AI
+      // Hiệu ứng đánh máy tối ưu với requestAnimationFrame
       let currentIndex = 0;
-      const maxDuration = 5000; // 5 giây (5000ms)
+      const charStep = Math.max(1, Math.ceil(botMessage.content.length / 50)); // Hiển thị nhiều ký tự hơn mỗi lần
 
-      const typingInterval = setInterval(() => {
-        currentIndex++;
+      const typeMessage = () => {
+        currentIndex += charStep;
         setTypingMessage(botMessage.content.slice(0, currentIndex));
 
-        if (currentIndex === botMessage.content.length) {
-          clearInterval(typingInterval);
+        if (currentIndex < botMessage.content.length) {
+          requestAnimationFrame(typeMessage); // Gọi lại mỗi khung hình để tạo hiệu ứng nhanh
+        } else {
+          // Khi hoàn thành typing
           setMessages(prevMessages =>
             prevMessages.map(msg =>
-              msg.id === botMessage.id ? { ...msg, content: botMessage.content, isTyping: false } : msg
+              msg.id === botMessage.id ? { ...msg, content: highlightHashtags(botMessage.content), isTyping: false } : msg
             )
           );
+          setHashtags(extractHashtags(botMessage.content)); // Trích xuất các hashtag
         }
-      }, 0); // Điều chỉnh tốc độ đánh máy
+      };
 
-      // Đảm bảo toàn bộ tin nhắn sẽ hiện ra sau 5 giây
-      setTimeout(() => {
-        clearInterval(typingInterval);  // Dừng lại quá trình đánh máy
-        setMessages(prevMessages =>
-          prevMessages.map(msg =>
-            msg.id === botMessage.id ? { ...msg, content: botMessage.content, isTyping: false } : msg
-          )
-        );
-      }, maxDuration);  // Sau 5 giây, buộc hiện hết nội dung
+      requestAnimationFrame(typeMessage); // Bắt đầu hiệu ứng typing
 
       setInputValue(''); // Reset lại input sau khi gửi
     } catch (error) {
@@ -108,6 +109,26 @@ const MessageInput: React.FC = () => {
     }
   };
 
+
+  // Hàm xử lý để phát hiện hashtag và bọc thẻ <span>
+  const highlightHashtags = (text: string) => {
+    return text.replace(/(#\w+)/g, '<span class="hashtag">$1</span>');
+  };
+
+  // Hàm để trích xuất các hashtag từ văn bản
+  const extractHashtags = (text: string): string[] => {
+    const matches = text.match(/(#\w+)/g); // Tìm tất cả hashtag theo mẫu #từ
+    return matches ? matches : []; // Nếu tìm thấy, trả về mảng hashtag, nếu không thì trả về mảng rỗng
+  };
+
+
+  const renderSuggestHashtag = (
+    <div className='hashtag-name'>
+      {hashtags.length > 0 && hashtags.map((hashtag, index) => (
+        <span key={index} className="hover-text">/{hashtag.split('#')[1]}</span>
+      ))}
+    </div>
+  );
 
   // Tạo phần tử chat-messages
   const chatMessages = (
@@ -119,7 +140,11 @@ const MessageInput: React.FC = () => {
             <span className='message-header'>{message.sender}</span>
           </div>
           <div className="message-content">
-            {message.isTyping ? typingMessage : message.content}
+            {message.isTyping ? (
+              typingMessage // Hiển thị "đang nhập" nếu tin nhắn đang được gõ
+            ) : (
+              <div dangerouslySetInnerHTML={{ __html: highlightHashtags(message.content) }}></div> // Chỉ xử lý hashtag
+            )}
             {message.imageUrl && <a href={message.imageUrl} data-fancybox="gallery" className="image-link"><img alt='AI Image' src={message.imageUrl} width={300} height={225} /></a>}
             {message.videoUrl && (
               <video controls className="message-video" width={300} height={225}>
@@ -152,10 +177,10 @@ const MessageInput: React.FC = () => {
     }
   }, [messages]);
 
-
   return (
 
     <>
+      {hashtagDiv && ReactDOM.createPortal(renderSuggestHashtag, hashtagDiv)}
       {chat00Div && ReactDOM.createPortal(chatMessages, chat00Div)}
 
       <div className="chat-container">
