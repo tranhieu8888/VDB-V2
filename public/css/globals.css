@@ -172,6 +172,7 @@ body {
   #mid-menu-body {
     width: 100% !important;
     min-height: calc(100vh - 72px);
+    gap: 7rem !important;
     /* height: 100% !important; */
   }
 
