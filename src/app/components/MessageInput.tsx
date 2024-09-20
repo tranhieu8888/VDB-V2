@@ -20,6 +20,7 @@ const MessageInput: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [chat00Div, setChat00Div] = useState<HTMLElement | null>(null); // Sử dụng state để lưu trữ phần tử chat00
   const [hashtagDiv, setHashtagDiv] = useState<HTMLElement | null>(null); // Sử dụng state để lưu trữ phần tử chat00
+  const [disableSend, setDisableSend] = useState(false); // Trạng thái điều khiển việc gửi tin nhắn
 
   const [typingMessage, setTypingMessage] = useState<string>(''); // Trạng thái tin nhắn đang gõ
   const messagesEndRef = useRef<HTMLDivElement>(null); // Tạo ref cho phần tử cuộn
@@ -39,8 +40,21 @@ const MessageInput: React.FC = () => {
     setHashtagDiv(hashtagElement);
   }, []); // useEffect không có dependency sẽ chỉ chạy một lần khi component mount
 
+
+
   const handleSendText = async () => {
+    // Nếu disableSend đang là true, chặn việc gửi tin nhắn
+    if (disableSend) {
+      console.log("Vui lòng đợi 1 giây trước khi gửi tin nhắn tiếp theo.");
+      return; // Dừng thực hiện nếu disableSend đang là true
+    }
+
+    // Khóa chức năng gửi tin nhắn trong 1 giây
+    setDisableSend(true);
+
+
     if (inputValue.trim() === '') return;
+
 
     const textarea = document.getElementById('text-box-midBody') as HTMLTextAreaElement;
     textarea.style.removeProperty('height');
@@ -104,8 +118,16 @@ const MessageInput: React.FC = () => {
       requestAnimationFrame(typeMessage); // Bắt đầu hiệu ứng typing
 
       setInputValue(''); // Reset lại input sau khi gửi
+
+
+
     } catch (error) {
       console.error('Error sending message:', error);
+    } finally {
+      // Sau 1 giây, mở khóa gửi tin nhắn
+      setTimeout(() => {
+        setDisableSend(false); // Mở khóa sau 1 giây
+      }, 1000); // 1 giây chờ trước khi người dùng có thể gửi tiếp
     }
   };
 
