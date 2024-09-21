@@ -15,7 +15,7 @@ const MenuRight = () => {
         <Image alt='image' style={{cursor: 'pointer'}} src="icon/Group 39486.svg" width={24} height={24} />
       </div>
     </div>
-    <div className="d-flex justify-content-center" style={{width: '260px'}}>
+    <div className="d-flex justify-content-center" style={{width: '260px', gap: '8px'}}>
       <div className="d-flex justify-content-center" style={{cursor: 'pointer', width: '80px', borderWidth: '0px 0px 3px 0px', padding: '8px 10px 8px 10px', gap: '10px', borderBottom: '3px solid #007AFF'}}>
         <Image alt='image' src="icon/mdi_account-eye-outline.svg" width={24} height={24} />
       </div>

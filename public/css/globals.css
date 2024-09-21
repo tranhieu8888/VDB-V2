@@ -40,6 +40,12 @@ body {
   gap: 10px;
 }
 
+.body-menu-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 #messages {
   gap: 24px;
 }
@@ -47,7 +53,7 @@ body {
 .chat-messages {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 }
 
 .typewriter {
@@ -444,6 +450,7 @@ body {
   gap: 10px;
   height: 100%;
   overflow: hidden;
+  align-items: center;
 }
 
 .mainTopic::-webkit-scrollbar {
@@ -1641,4 +1648,9 @@ a:hover #textSub-menuleft {
 
 #title-mid-top-body {
   gap: 8px;
+}
+
+.full-suggest.active {
+  background-color: #f0f0f0; /* Thay đổi màu nền khi active */
+  border: 1px solid #007bff; /* Thêm viền khi active */
 }

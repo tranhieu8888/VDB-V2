@@ -1,89 +1,46 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import 'react-loading-skeleton/dist/skeleton.css'
 import Image from "next/image";
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import ReactDOM from 'react-dom';
-import 'react-loading-skeleton/dist/skeleton.css'
-import { getMenuData } from '../../../services/menuService';
-
-// Định nghĩa interface cho kiểu dữ liệu của user
-interface Directory {
-    name: string;
-    icon: string;
-}
-
-interface User {
-    id: string;
-    full_name: string;
-    avatar: string;
-    directory: Directory[];
-}
-
-interface MenuItem {
-    name: string;
-    img_icon: string;
-}
+import { getMenuData, fetchUsers, User, MenuItem} from '../../../services/menuService';
 
 const ListUserAI: React.FC = () => {
     const [users, setUsers] = useState<User[]>([]);
     const [isLoading, setIsLoading] = useState(true); // Trạng thái tải
     const [activeUserId, setActiveUserId] = useState<string | null>(null); // Trạng thái lưu ID người dùng được chọn
-
     const [menuSuggest, setMenuSuggest] = useState<MenuItem[] | null>(null);
-
-
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
     useEffect(() => {
         // Ví dụ giả lập việc lấy dữ liệu menu
         const fetchMenuSuggest = async () => {
             const data = await getMenuData();  // Giả sử bạn có hàm gọi API lấy dữ liệu
             setMenuSuggest(data); // Đảm bảo rằng 'data' là một mảng, không phải HTMLElement
         };
-
         fetchMenuSuggest();
     }, []);
 
-
-
-
     useEffect(() => {
-        // Gọi API để lấy dữ liệu
-        const fetchUsers = async () => {
+        const loadUsers = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(
-                    "https://api.vdiarybook.net/api/personals/users?limit=10&page=1&type=hashtag"
-                );
-                const result = await response.json();
-                const fetchedUsers: User[] = result.data.docs.map((user: any) => ({
-                    id: user._id,
-                    full_name: user.full_name,
-                    avatar: user.avatar
-                        ? `https://files.vdiarybook.net/api/files/${user.avatar}`
-                        : 'https://files.vdiarybook.net/api/files/admin/20240809/bc97377f-37a3-483c-8439-d19a0b147c39.png',
-                    directory: user.directory?.value.map((val: any) => ({
-                        name: val.name,
-                        icon: val.icon
-                            ? `https://api.vdiarybook.net/${val.icon}`
-                            : "https://files.vdiarybook.net/api/files/admin/20240809/bc97377f-37a3-483c-8439-d19a0b147c39.png",
-                    })),
-                }));
+                // Gọi API từ service
+                const fetchedUsers = await fetchUsers(10, 1, 'hashtag');
                 setUsers(fetchedUsers);
             } catch (error) {
-                console.error("Error fetching users:", error);
+                console.error('Error fetching users:', error);
             } finally {
                 setIsLoading(false); // Kết thúc quá trình tải
             }
         };
-
-        fetchUsers();
+        loadUsers();
     }, []);
-
 
     // Hàm xử lý sự kiện khi nhấn vào more-topic
     const handleMoreTopicClick = () => {
         document.getElementById('mainDropdown')?.classList.toggle('show');
     };
-
 
     const handleUserClick = (userId: string) => {
         // Nếu đã chọn user, click lại sẽ bỏ chọn
@@ -103,7 +60,7 @@ const ListUserAI: React.FC = () => {
                     {uniqueTopics.map((topic, index) => (
                         <div key={index} className="full-suggest d-flex">
                             <div className="items-suggest d-flex">
-                                <div className="child-items-suggest d-flex align-items-center">
+                                <div className={`child-items-suggest ${activeIndex === index ? 'active' : ''} d-flex align-items-center`} onClick={() => setActiveIndex(index)}>
                                     <Image alt='image' src="icon/luggage 1.svg" width={20} height={20} priority />
                                     <span className="text-topic">{topic}</span>
                                 </div>
@@ -118,12 +75,11 @@ const ListUserAI: React.FC = () => {
     const renderMenuSuggest = (
         <div className="topic-full d-flex" style={{ gap: 8 }}>
             {menuSuggest?.slice(0, 6).map((item, index) => (
-                <div key={index} id="suggest-contain" className="d-flex align-items-center">
+                <div key={index} id="suggest-contain" className="suggest-contain d-flex align-items-center">
                     <img src={`https://files.vdiarybook.net/api/files/${item.img_icon}`} width={20} height={20} alt={item.name} />
                     <span id="text-suggest">{item.name || 'Nhật ký'}</span>
                 </div>
             ))}
-
 
             <div
                 id="more-topic"
@@ -157,15 +113,9 @@ const ListUserAI: React.FC = () => {
     );
 
 
-
-
     return (
-
         <>
-
             {menuSuggest && ReactDOM.createPortal(renderMenuSuggest, document.getElementById('suggest') as HTMLElement)}
-
-
             <div>
                 {/* In danh sách user */}
                 <div className="d-flex flex-column">
