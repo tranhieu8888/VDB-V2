@@ -4,10 +4,8 @@ import MessageInput from './components/MessageInput';
 import ListUserAI from './components/listuserai';
 import Image from "next/image";
 import React from 'react';
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const HomePage = async () => {
-  <SpeedInsights />
   return (
     <>
       <div className="d-flex" id="main-body">

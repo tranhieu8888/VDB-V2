@@ -6,43 +6,6 @@ const CarouselClientComponent = () => {
 
   const isMounted = useRef(false);
 
-  useEffect(() => {
-    // Kiểm tra nếu jQuery đã được tải
-    if (typeof window !== 'undefined' && window.$) {
-      window.$(document).ready(function () {
-        window.$(".owl-carousel").owlCarousel({
-          margin: 8,
-          autoWidth: true,
-          autoplaySpeed: 800,
-          dots: false,
-          responsive: {
-            0: {
-              items: 1,
-            },
-            600: {
-              items: 2,
-            },
-            1000: {
-              items: 3,
-            },
-          },
-          smartSpeed: 600,
-          responsiveRefreshRate: 100,
-        });
-
-        // Xử lý khoảng trắng dư thừa
-        window.$(".owl-carousel").on("translated.owl.carousel", function () {
-          const owlStage = window.$(".owl-stage");
-          const owlStageWidth = owlStage.width();
-          const owlCarouselWidth = window.$(".owl-carousel").width();
-
-          if (owlStageWidth < owlCarouselWidth) {
-            owlStage.css("width", `${owlCarouselWidth}px`);
-          }
-        });
-      });
-    }
-  }, []); // Chỉ chạy một lần sau khi component mount
 
 
   useEffect(() => {

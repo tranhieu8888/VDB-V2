@@ -14,18 +14,15 @@ type Message = {
   isTyping?: boolean; // Thuộc tính isTyping tùy chọn
 };
 
-
 const MessageInput: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [chat00Div, setChat00Div] = useState<HTMLElement | null>(null); // Sử dụng state để lưu trữ phần tử chat00
   const [hashtagDiv, setHashtagDiv] = useState<HTMLElement | null>(null); // Sử dụng state để lưu trữ phần tử chat00
   const [disableSend, setDisableSend] = useState(false); // Trạng thái điều khiển việc gửi tin nhắn
-
   const [typingMessage, setTypingMessage] = useState<string>(''); // Trạng thái tin nhắn đang gõ
   const messagesEndRef = useRef<HTMLDivElement>(null); // Tạo ref cho phần tử cuộn
   const [hashtags, setHashtags] = useState<string[]>([]); // Mảng chứa các hashtag được phát hiện
-
   const userAvatar = 'icon/Profile.svg'; // Đặt đường dẫn tới ảnh avatar người dùng
 
   useEffect(() => {
@@ -40,39 +37,35 @@ const MessageInput: React.FC = () => {
     setHashtagDiv(hashtagElement);
   }, []); // useEffect không có dependency sẽ chỉ chạy một lần khi component mount
 
+  // Hàm xử lý khi người dùng click vào hashtag và gửi tin nhắn
+  const handleHashtagClick = (hashtag: string) => {
+    // Đặt giá trị của hashtag vào input và trực tiếp gửi tin nhắn
+    handleSendText(hashtag);  // Gọi hàm gửi tin nhắn với giá trị hashtag
+  };
 
-
-  const handleSendText = async () => {
+  const handleSendText = async (messageToSend?: string) => {
     // Nếu disableSend đang là true, chặn việc gửi tin nhắn
     if (disableSend) {
-      console.log("Vui lòng đợi 1 giây trước khi gửi tin nhắn tiếp theo.");
+      // console.log("Vui lòng đợi 1 giây trước khi gửi tin nhắn tiếp theo.");
       return; // Dừng thực hiện nếu disableSend đang là true
     }
-
     // Khóa chức năng gửi tin nhắn trong 1 giây
     setDisableSend(true);
-
-
-    if (inputValue.trim() === '') return;
-
-
+    const message = messageToSend || inputValue;  // Ưu tiên dùng `messageToSend` nếu có, nếu không dùng `inputValue`
+    if (message.trim() === '') return;
     const textarea = document.getElementById('text-box-midBody') as HTMLTextAreaElement;
     textarea.style.removeProperty('height');
-
     const userMessage = {
       id: messages.length + 1,
       sender: 'Bạn',
-      content: inputValue,
+      content: message,
       avatar: userAvatar,
     };
-
     try {
-      const response = await fetch(`https://api.vdiarybook.net/api/posts?search=${encodeURIComponent(inputValue)}`);
-
+      const response = await fetch(`https://api.vdiarybook.net/api/posts?search=${encodeURIComponent(message)}`);
       if (!response.ok) {
         throw new Error('Failed to send message');
       }
-
       const result = await response.json();
       const postData = result.data && result.data.length > 0 ? result.data[0] : null;
       const botMessageContent = postData
@@ -91,9 +84,7 @@ const MessageInput: React.FC = () => {
         imageUrl: botMessageImage,
         isTyping: true,
       };
-
       setMessages((prevMessages) => [...prevMessages, userMessage, botMessage]);
-
       // Hiệu ứng đánh máy tối ưu với requestAnimationFrame
       let currentIndex = 0;
       const charStep = Math.max(1, Math.ceil(botMessage.content.length / 50)); // Hiển thị nhiều ký tự hơn mỗi lần
@@ -114,13 +105,8 @@ const MessageInput: React.FC = () => {
           setHashtags(extractHashtags(botMessage.content)); // Trích xuất các hashtag
         }
       };
-
       requestAnimationFrame(typeMessage); // Bắt đầu hiệu ứng typing
-
       setInputValue(''); // Reset lại input sau khi gửi
-
-
-
     } catch (error) {
       console.error('Error sending message:', error);
     } finally {
@@ -131,10 +117,9 @@ const MessageInput: React.FC = () => {
     }
   };
 
-
   // Hàm xử lý để phát hiện hashtag và bọc thẻ <span>
   const highlightHashtags = (text: string) => {
-    return text.replace(/(#\w+)/g, '<span class="hashtag">$1</span>');
+    return text.replace(/(#\w+)/g, '<span class="hashtag" >$1</span>');
   };
 
   // Hàm để trích xuất các hashtag từ văn bản
@@ -143,11 +128,10 @@ const MessageInput: React.FC = () => {
     return matches ? matches : []; // Nếu tìm thấy, trả về mảng hashtag, nếu không thì trả về mảng rỗng
   };
 
-
   const renderSuggestHashtag = (
     <div className='hashtag-name'>
       {hashtags.length > 0 && hashtags.map((hashtag, index) => (
-        <span key={index} className="hover-text">/{hashtag.split('#')[1]}</span>
+        <span key={index} className="hover-text" onClick={() => handleHashtagClick(hashtag)}>#{hashtag.split('#')[1]}</span>
       ))}
     </div>
   );
@@ -174,7 +158,6 @@ const MessageInput: React.FC = () => {
                 Your browser does not support the video tag.
               </video>
             )}
-
           </div>
           <div ref={messagesEndRef} /> {/* Thẻ div để cuộn đến */}
         </div>
@@ -182,14 +165,12 @@ const MessageInput: React.FC = () => {
     </div>
   );
 
-
   const handleKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
       handleSendText();
     }
   };
-
 
   // Cuộn đến cuối nội dung mỗi khi messages thay đổi
 
@@ -200,7 +181,6 @@ const MessageInput: React.FC = () => {
   }, [messages]);
 
   return (
-
     <>
       {hashtagDiv && ReactDOM.createPortal(renderSuggestHashtag, hashtagDiv)}
       {chat00Div && ReactDOM.createPortal(chatMessages, chat00Div)}
@@ -217,7 +197,7 @@ const MessageInput: React.FC = () => {
             required
           />
           <div className="d-flex" style={{ position: 'absolute', bottom: 10, right: 10, gap: 10 }}>
-            <a href="#" onClick={handleSendText}>
+            <a href="#" onClick={() => handleSendText()}>
               <Image src="icon/mingcute_send-line.svg" width={20} height={20} alt="Send" />
             </a>
           </div>

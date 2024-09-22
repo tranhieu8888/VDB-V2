@@ -12,6 +12,9 @@ const ListUserAI: React.FC = () => {
     const [activeUserId, setActiveUserId] = useState<string | null>(null); // Trạng thái lưu ID người dùng được chọn
     const [menuSuggest, setMenuSuggest] = useState<MenuItem[] | null>(null);
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    const [activeBtnMenu, setActiveBtnMenu] = useState<number | null>(null);
+
+
     useEffect(() => {
         // Ví dụ giả lập việc lấy dữ liệu menu
         const fetchMenuSuggest = async () => {
@@ -75,7 +78,7 @@ const ListUserAI: React.FC = () => {
     const renderMenuSuggest = (
         <div className="topic-full d-flex" style={{ gap: 8 }}>
             {menuSuggest?.slice(0, 6).map((item, index) => (
-                <div key={index} id="suggest-contain" className="suggest-contain d-flex align-items-center">
+                <div key={index} id="suggest-contain" className={`suggest-contain ${activeBtnMenu === index ? 'active' : ''} d-flex align-items-center`} onClick={() => setActiveBtnMenu(index)}>
                     <img src={`https://files.vdiarybook.net/api/files/${item.img_icon}`} width={20} height={20} alt={item.name} />
                     <span id="text-suggest">{item.name || 'Nhật ký'}</span>
                 </div>
