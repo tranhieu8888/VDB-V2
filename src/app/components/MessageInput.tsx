@@ -2,8 +2,9 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import Image from "next/image";
-
+// import Image from "next/image";
+import { Image } from 'primereact/image';
+        
 type Message = {
   id: number;
   sender: string;   // Người gửi tin nhắn
@@ -200,7 +201,7 @@ const MessageInput: React.FC = () => {
         </>
       ) : (
         <>
-          <Image alt='image' src="icon/speech-bubble 1.svg" width={100} height={100} priority />
+          <Image alt='image' src="icon/speech-bubble 1.svg" width="100" height="100" />
           <span className="title-today" style={{ textAlign: "center" }}>
             Chưa có cuộc trò chuyện nào.
             <br />
@@ -216,16 +217,17 @@ const MessageInput: React.FC = () => {
       {messages.map((message) => (
         <div key={message.id} className="message">
           <div className='message-header-container'>
-            <Image src={message.avatar} alt="Avatar" className="avatar" width={24} height={24} />
+            <Image src={message.avatar} alt="Avatar" className="avatar" width="24" height="24" />
             <span className='message-header'>{message.sender}</span>
           </div>
           <div className="message-content">
+            
             {message.isTyping ? (
               typingMessage // Hiển thị "đang nhập" nếu tin nhắn đang được gõ
             ) : (
               <div dangerouslySetInnerHTML={{ __html: highlightHashtags(message.content) }}></div> // Chỉ xử lý hashtag
             )}
-            {message.imageUrl && <a href={message.imageUrl} data-fancybox="gallery" className="image-link"><img alt='AI Image' src={message.imageUrl} width={300} height={225} /></a>}
+            {message.imageUrl && <Image zoomSrc={message.imageUrl} alt='AI Image' src={message.imageUrl} width="300" height="225" preview />}
             {message.videoUrl && (
               <video controls className="message-video" width={300} height={225}>
                 <source src={message.videoUrl} type="video/mp4" />
@@ -275,7 +277,7 @@ const MessageInput: React.FC = () => {
               <div className="loader"></div>
             ) : (
               <a href="#" onClick={() => handleSendText()}>
-                <Image src="icon/mingcute_send-line.svg" width={20} height={20} alt="Send" />
+                <Image src="icon/mingcute_send-line.svg" width="20" height="20" alt="Send" />
               </a>
             )}
           </div>

@@ -4,16 +4,27 @@ import MenuLeft from './components/MenuLeft';
 import MenuRight from './components/MenuRight';
 import { ReactNode } from 'react';
 import Script from 'next/script';
+import Head from 'next/head'; // Import component Head
+import "primereact/resources/themes/lara-light-cyan/theme.css";
+
+
+
+
+
+import './styles/globals.css'; // Import global CSS
+
+import 'bootstrap/dist/css/bootstrap.css'
+
 
 export default function Rootlayout({ children }: { children: ReactNode }) {
+
+
   return (
     <html lang="en">
-      <head>
+      <Head>
         <title>Module AI</title>
-        <link rel="stylesheet" href="/css/jquery.fancybox.min.css" />
-        <link rel="stylesheet" href="/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/css/globals.css" />
-      </head>
+        {/* <link rel="stylesheet" href="/css/globals.module.css" /> */}
+      </Head>
       <body>
 
       <div className="overlay" id="overlay"></div>
@@ -42,8 +53,6 @@ export default function Rootlayout({ children }: { children: ReactNode }) {
 
       {/* External Scripts */}
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" strategy="beforeInteractive" />
-      <Script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" strategy="beforeInteractive"  />
-      <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" strategy="beforeInteractive" />
       </body>
     </html>
   );
