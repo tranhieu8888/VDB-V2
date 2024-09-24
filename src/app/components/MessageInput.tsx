@@ -76,17 +76,17 @@ const MessageInput: React.FC = () => {
     if (disableSend) {
       // console.log("Vui lòng đợi 1 giây trước khi gửi tin nhắn tiếp theo.");
       return; // Dừng thực hiện nếu disableSend đang là true
+    } else {
+      // Khóa chức năng gửi tin nhắn trong 1 giây
+      setDisableSend(true);
     }
-    // Khóa chức năng gửi tin nhắn trong 1 giây
-    setDisableSend(true);
-    const message = messageToSend || inputValue;  // Ưu tiên dùng `messageToSend` nếu có, nếu không dùng `inputValue`
 
-
+    const message = messageToSend || inputValue;
 
     // Lưu danh sách tin nhắn mới vào sessionStorage
     const messagesHistory: HistoryMessage = {
-      message: inputValue,
-      timestamp: new Date().toISOString(), // Lưu thời gian gửi dưới dạng ISO
+      message: message ? (message.includes('#') ? message.split('#').join('') : message) : '',
+      timestamp: new Date().toISOString(),
     };
 
     const storedHisMessages = sessionStorage.getItem('historyMessage');
