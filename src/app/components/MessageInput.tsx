@@ -14,6 +14,12 @@ type Message = {
   isTyping?: boolean; // Thuộc tính isTyping tùy chọn
 };
 
+interface HistoryMessage {
+  message: string;
+  timestamp: string;
+}
+
+
 const MessageInput: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>('');
   const [messages, setMessages] = useState<Message[]>([]);
@@ -24,6 +30,11 @@ const MessageInput: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null); // Tạo ref cho phần tử cuộn
   const [hashtags, setHashtags] = useState<string[]>([]); // Mảng chứa các hashtag được phát hiện
   const userAvatar = 'icon/Profile.svg'; // Đặt đường dẫn tới ảnh avatar người dùng
+  const [historyElmMessg, setHistoryElmMessg] = useState<HTMLElement | null>(null); // Sử dụng state để lưu trữ phần tử chat00
+  const [historyMessg, setHistoryMessg] = useState<HistoryMessage[]>([]);
+  const [hasStorageData, setHasStorageData] = useState(false);
+  const [activeHistory, setActiveHistory] = useState<number | null>(null);
+
 
   useEffect(() => {
     // Chỉ gọi document.getElementById khi component được render trên client
@@ -43,6 +54,26 @@ const MessageInput: React.FC = () => {
     handleSendText(hashtag);  // Gọi hàm gửi tin nhắn với giá trị hashtag
   };
 
+
+  // Lấy các tin nhắn từ sessionStorage khi component được mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedHisMessages = sessionStorage.getItem('historyMessage');
+      if (storedHisMessages) {
+        setHistoryMessg(JSON.parse(storedHisMessages)); // Cập nhật state với dữ liệu từ sessionStorage
+        setHasStorageData(true)
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    // Chỉ gọi document.getElementById khi component được render trên client
+    const historyMess = document.getElementById('history-messages');
+    setHistoryElmMessg(historyMess);
+  }, []); // useEffect không có dependency sẽ chỉ chạy một lần khi component mount
+
+
+
   const handleSendText = async (messageToSend?: string) => {
     // Nếu disableSend đang là true, chặn việc gửi tin nhắn
     if (disableSend) {
@@ -52,6 +83,27 @@ const MessageInput: React.FC = () => {
     // Khóa chức năng gửi tin nhắn trong 1 giây
     setDisableSend(true);
     const message = messageToSend || inputValue;  // Ưu tiên dùng `messageToSend` nếu có, nếu không dùng `inputValue`
+
+
+
+    // Lưu danh sách tin nhắn mới vào sessionStorage
+    const messagesHistory: HistoryMessage = {
+      message: inputValue,
+      timestamp: new Date().toISOString(), // Lưu thời gian gửi dưới dạng ISO
+    };
+
+    const storedHisMessages = sessionStorage.getItem('historyMessage');
+    let updatedHisMessages: HistoryMessage[] = storedHisMessages ? JSON.parse(storedHisMessages) : [];
+
+    // Thêm tin nhắn mới vào mảng
+    updatedHisMessages = [...updatedHisMessages, messagesHistory];
+
+      // Cập nhật state với mảng mới
+      setHistoryMessg(updatedHisMessages);
+
+    // Lưu danh sách tin nhắn mới vào sessionStorage dưới dạng JSON
+    sessionStorage.setItem('historyMessage', JSON.stringify(updatedHisMessages));
+
     if (message.trim() === '') return;
     const textarea = document.getElementById('text-box-midBody') as HTMLTextAreaElement;
     textarea.style.removeProperty('height');
@@ -136,6 +188,30 @@ const MessageInput: React.FC = () => {
     </div>
   );
 
+  const renderHistoryMs = (
+    <>
+      {hasStorageData ? (
+        <>
+          {historyMessg.map((tag, index) => (
+            <div key={index} className={`tag-history ${activeHistory === index ? 'active' : ''} d-flex align-items-center justify-content-between`} onClick={() => setActiveHistory(index)}>
+              <span id="text-tag-history" className='text-tag-history'>/{tag.message}</span>
+              <a href="#"><img src="icon/ic_baseline-more-horiz.svg" width="24" height="24" /></a>
+            </div>
+          ))}
+
+        </>
+      ) : (
+        <>
+          <Image alt='image' src="icon/speech-bubble 1.svg" width={100} height={100} priority />
+          <span className="title-today" style={{ textAlign: "center" }}>
+            Chưa có cuộc trò chuyện nào.
+            <br />
+            Hãy bắt đầu ngay nhé! </span>
+        </>
+      )}
+    </>
+  )
+
   // Tạo phần tử chat-messages
   const chatMessages = (
     <div className="chat-messages">
@@ -182,9 +258,9 @@ const MessageInput: React.FC = () => {
 
   return (
     <>
+      {historyElmMessg && ReactDOM.createPortal(renderHistoryMs, historyElmMessg)}
       {hashtagDiv && ReactDOM.createPortal(renderSuggestHashtag, hashtagDiv)}
       {chat00Div && ReactDOM.createPortal(chatMessages, chat00Div)}
-
       <div className="chat-container">
         <div className="d-flex justify-content-between" style={{ position: 'relative' }}>
           <textarea
@@ -204,7 +280,6 @@ const MessageInput: React.FC = () => {
                 <Image src="icon/mingcute_send-line.svg" width={20} height={20} alt="Send" />
               </a>
             )}
-
           </div>
         </div>
       </div>

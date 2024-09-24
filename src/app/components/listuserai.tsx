@@ -6,7 +6,6 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import ReactDOM from 'react-dom';
 import { getMenuData, fetchUsers, User, MenuItem } from '../../../services/menuService';
 
-
 const ListUserAI: React.FC = () => {
     const [users, setUsers] = useState<User[]>([]);
     const [isLoading, setIsLoading] = useState(true); // Trạng thái tải
@@ -14,68 +13,6 @@ const ListUserAI: React.FC = () => {
     const [menuSuggest, setMenuSuggest] = useState<MenuItem[] | null>(null);
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [activeBtnMenu, setActiveBtnMenu] = useState<number | null>(null);
-    const [activeHistory, setActiveHistory] = useState<number | null>(null);
-    const [historyElmMessg, setHistoryElmMessg] = useState<HTMLElement | null>(null); // Sử dụng state để lưu trữ phần tử chat00
-    const [historyMessg, setHistoryMessg] = useState<string[]>([]);
-    const [hasStorageData, setHasStorageData] = useState(false);
-
-    type HistoryMessage = {
-        id: number;
-        hashtag: string;
-    };
-
-    // Tạo JSON ảo và lưu vào sessionStorage
-    const createVirtualJson = () => {
-        const virtualData = {
-            hashtags: [
-                { id: 1, hashtag: 'vzonex' },
-                { id: 2, hashtag: 'canvanex' },
-            ]
-        };
-        // Lưu JSON ảo vào sessionStorage
-        sessionStorage.setItem('virtualHashtags', JSON.stringify(virtualData));
-    }
-
-    // Lấy dữ liệu từ sessionStorage và hiển thị nếu đúng sessionId
-    useEffect(() => {
-        const storedHashtags = sessionStorage.getItem('virtualHashtags');
-        if (storedHashtags) {
-            const parsedData = JSON.parse(storedHashtags);
-            setHistoryMessg(parsedData.hashtags.map((item: HistoryMessage) => item.hashtag));
-            setHasStorageData(true); // Có dữ liệu trong sessionStorage
-        } else {
-            createVirtualJson();  // Tạo JSON ảo nếu chưa có
-        }
-    }, []);
-
-    const renderHistoryMs = (
-        <>
-            {hasStorageData ? (
-                <>
-                    {historyMessg.map((tag, index) => (
-                        <div key={index} className={`tag-history ${activeHistory === index ? 'active' : ''} d-flex align-items-center justify-content-between`} onClick={() => setActiveHistory(index)}>
-                            <span id="text-tag-history">/{tag}</span>
-                            <a href="#"><img src="icon/ic_baseline-more-horiz.svg" width="24" height="24" /></a>
-                        </div>
-                    ))}
-
-                </>
-            ) : (
-                <>
-                    <Image alt='image' src="icon/speech-bubble 1.svg" width={100} height={100} priority />
-                    <span className="title-today" style={{ textAlign: "center" }}>
-                        Chưa có cuộc trò chuyện nào.
-                        <br />
-                        Hãy bắt đầu ngay nhé! </span>
-                </>
-            )}
-        </>
-    )
-    useEffect(() => {
-        // Chỉ gọi document.getElementById khi component được render trên client
-        const historyMess = document.getElementById('history-messages');
-        setHistoryElmMessg(historyMess);
-    }, []); // useEffect không có dependency sẽ chỉ chạy một lần khi component mount
 
     useEffect(() => {
         // Ví dụ giả lập việc lấy dữ liệu menu
@@ -180,7 +117,6 @@ const ListUserAI: React.FC = () => {
     return (
         <>
             {menuSuggest && ReactDOM.createPortal(renderMenuSuggest, document.getElementById('suggest') as HTMLElement)}
-            {historyElmMessg && ReactDOM.createPortal(renderHistoryMs, historyElmMessg)}
 
             <div>
                 {/* In danh sách user */}

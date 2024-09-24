@@ -845,6 +845,10 @@ body {
   overflow-y: auto;
 }
 
+.text-tag-history {
+  overflow: hidden;
+}
+
 #text-tag-history {
   font-size: 14px;
   font-weight: 400;
