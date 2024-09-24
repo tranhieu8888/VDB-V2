@@ -32,7 +32,6 @@ const MessageInput: React.FC = () => {
   const userAvatar = 'icon/Profile.svg'; // Đặt đường dẫn tới ảnh avatar người dùng
   const [historyElmMessg, setHistoryElmMessg] = useState<HTMLElement | null>(null); // Sử dụng state để lưu trữ phần tử chat00
   const [historyMessg, setHistoryMessg] = useState<HistoryMessage[]>([]);
-  const [hasStorageData, setHasStorageData] = useState(false);
   const [activeHistory, setActiveHistory] = useState<number | null>(null);
 
 
@@ -54,25 +53,23 @@ const MessageInput: React.FC = () => {
     handleSendText(hashtag);  // Gọi hàm gửi tin nhắn với giá trị hashtag
   };
 
-
-  // Lấy các tin nhắn từ sessionStorage khi component được mount
+  // Lấy dữ liệu từ sessionStorage khi component được mount
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const storedHisMessages = sessionStorage.getItem('historyMessage');
       if (storedHisMessages) {
-        setHistoryMessg(JSON.parse(storedHisMessages)); // Cập nhật state với dữ liệu từ sessionStorage
-        setHasStorageData(true)
+        setHistoryMessg(JSON.parse(storedHisMessages));
       }
     }
   }, []);
+
+
 
   useEffect(() => {
     // Chỉ gọi document.getElementById khi component được render trên client
     const historyMess = document.getElementById('history-messages');
     setHistoryElmMessg(historyMess);
   }, []); // useEffect không có dependency sẽ chỉ chạy một lần khi component mount
-
-
 
   const handleSendText = async (messageToSend?: string) => {
     // Nếu disableSend đang là true, chặn việc gửi tin nhắn
@@ -93,13 +90,14 @@ const MessageInput: React.FC = () => {
     };
 
     const storedHisMessages = sessionStorage.getItem('historyMessage');
+
     let updatedHisMessages: HistoryMessage[] = storedHisMessages ? JSON.parse(storedHisMessages) : [];
 
     // Thêm tin nhắn mới vào mảng
     updatedHisMessages = [...updatedHisMessages, messagesHistory];
 
-      // Cập nhật state với mảng mới
-      setHistoryMessg(updatedHisMessages);
+    // Cập nhật state với mảng mới
+    setHistoryMessg(updatedHisMessages);
 
     // Lưu danh sách tin nhắn mới vào sessionStorage dưới dạng JSON
     sessionStorage.setItem('historyMessage', JSON.stringify(updatedHisMessages));
@@ -190,7 +188,7 @@ const MessageInput: React.FC = () => {
 
   const renderHistoryMs = (
     <>
-      {hasStorageData ? (
+      {historyMessg.length > 0 ? (
         <>
           {historyMessg.map((tag, index) => (
             <div key={index} className={`tag-history ${activeHistory === index ? 'active' : ''} d-flex align-items-center justify-content-between`} onClick={() => setActiveHistory(index)}>
