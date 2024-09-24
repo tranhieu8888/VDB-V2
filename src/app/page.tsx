@@ -19,12 +19,12 @@ const HomePage = async () => {
             <Image alt='image' src="icon/search.svg" width={24} height={24} style={{ position: "absolute", left: 12 }} priority />
           </div>
           <span className="title-today">Hôm nay</span>
-          <div className="d-flex flex-column align-items-center" style={{ gap: 8 }}>
-            <Image alt='image' src="icon/speech-bubble 1.svg" width={100} height={100} priority />
+          <div id='history-messages' className="d-flex flex-column align-items-center" style={{ gap: 8 }}>
+            {/* <Image alt='image' src="icon/speech-bubble 1.svg" width={100} height={100} priority />
             <span className="title-today" style={{ textAlign: "center" }}>
               Chưa có cuộc trò chuyện nào.
               <br />
-              Hãy bắt đầu ngay nhé! </span>
+              Hãy bắt đầu ngay nhé! </span> */}
           </div>
           <div id="btn-chevon" className="d-flex justify-content-center align-items-center">
             <Image alt='image' src="icon/chevron-left.svg" width={12} height={12} priority />
@@ -61,8 +61,6 @@ const HomePage = async () => {
             </div>
           </div>
 
-
-
           <div id="messages" className="d-flex flex-column" />
           <div className='group-menu-future'>
 
@@ -78,16 +76,13 @@ const HomePage = async () => {
               >
                 Chủ đề khác
               </span>
-              
             </div>
-
 
             <div id='suggestMain' className="d-flex flex-column">
               <ListUserAI />
             </div>
             <div className="container" id='suggest-hashtags'>
             </div>
-
 
             <div className="d-flex flex-column" id="mid-bottom-body">
               <div className="contain-groupbtn-bdmid d-flex flex-column">
@@ -131,7 +126,6 @@ const HomePage = async () => {
                     </div>
                   </div>
                 </div>
-
                 <MessageInput />
               </div>
             </div>
@@ -154,8 +148,6 @@ const HomePage = async () => {
             <ImageUploadComponent />
             <button className="btn-xacnhan-contribute">Xác nhận</button>
           </div>
-
-
 
           <div className="manager-contribute d-flex flex-column" style={{ zIndex: 99999 }}>
             <div className="navbar-donggop d-flex">

@@ -197,9 +197,14 @@ const MessageInput: React.FC = () => {
             required
           />
           <div className="d-flex" style={{ position: 'absolute', bottom: 10, right: 10, gap: 10 }}>
-            <a href="#" onClick={() => handleSendText()}>
-              <Image src="icon/mingcute_send-line.svg" width={20} height={20} alt="Send" />
-            </a>
+            {disableSend ? (
+              <div className="loader"></div>
+            ) : (
+              <a href="#" onClick={() => handleSendText()}>
+                <Image src="icon/mingcute_send-line.svg" width={20} height={20} alt="Send" />
+              </a>
+            )}
+
           </div>
         </div>
       </div>

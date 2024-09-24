@@ -838,6 +838,17 @@ body {
   gap: 10px;
   border-radius: 8px;
   cursor: pointer;
+  width: 100%;
+}
+
+#history-messages {
+  overflow-y: auto;
+}
+
+#text-tag-history {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.94px;
 }
 
 .tag-history:hover {
@@ -1677,4 +1688,26 @@ a:hover #textSub-menuleft {
 
 .hover-text:hover {
   color: red;
+}
+
+
+.loader {
+  border: 8px solid #f3f3f3;
+  /* Light grey */
+  border-top: 8px solid #3498db;
+  /* Blue */
+  border-radius: 50%;
+  width: 20px;
+  height: 20x;
+  animation: spin 0.3s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
